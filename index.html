@@ -352,6 +352,37 @@
     <p style="margin-top: 1.2rem; opacity: 0.6;">© 2026 Kartik Electrical. All rights reserved.</p>
   </footer>
 
-</body>
+</body><!-- Lead Capture Form -->
+<section id="contact-form" style="background:#18181b; padding:28px 16px; border-radius:12px; margin:24px 12px; border:1px solid #27272a; color:#fff; font-family:system-ui, sans-serif;">
+  <h3 style="color:#facc15; font-size:20px; margin:0 0 8px;">Request a Service Consultation</h3>
+  <p style="color:#a1a1aa; font-size:14px; margin:0 0 16px;">Direct triage for earthing tests, aviation lights, and panel maintenance.</p>
+  
+  <form action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="6b268f35-f1e1-4">
+    <input type="hidden" name="subject" value="New Service Lead - Kartik Electrical">
+
+    <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Full Name *</label>
+    <input type="text" name="name" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #3f3f46; background:#09090b; color:#fff; margin-bottom:12px; box-sizing:border-box;">
+
+    <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Phone Number *</label>
+    <input type="tel" name="phone" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #3f3f46; background:#09090b; color:#fff; margin-bottom:12px; box-sizing:border-box;">
+
+    <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Service Needed *</label>
+    <select name="service" style="width:100%; padding:10px; border-radius:8px; border:1px solid #3f3f46; background:#09090b; color:#fff; margin-bottom:12px; box-sizing:border-box;">
+      <option value="Chemical Earthing & Testing">Chemical Earthing & Testing</option>
+      <option value="Aviation Obstruction Lighting">Aviation Obstruction Lighting</option>
+      <option value="Industrial Fault / Panel Breakdown">Industrial Fault / Panel Breakdown</option>
+      <option value="General Commercial Wiring">General Commercial Wiring</option>
+    </select>
+
+    <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Site Location / Details</label>
+    <textarea name="location" rows="2" placeholder="Locality, building type, or specific fault" style="width:100%; padding:10px; border-radius:8px; border:1px solid #3f3f46; background:#09090b; color:#fff; margin-bottom:16px; box-sizing:border-box;"></textarea>
+
+    <button type="submit" style="width:100%; padding:12px; border-radius:8px; border:none; background:#facc15; color:#09090b; font-weight:700; font-size:15px; cursor:pointer;">
+      Submit Enquiry
+    </button>
+  </form>
+</section>
+
 </html>
 
