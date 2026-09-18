@@ -1,7 +1,9 @@
 {
   "name": "Kartik Electrical",
   "short_name": "KartikElec",
-  "start_url": "./index.html",
+  "description": "Industrial electrical engineering, chemical earthing, and aviation obstruction lighting solutions.",
+  "start_url": "/kartik-electrical/",
+  "scope": "/kartik-electrical/",
   "display": "standalone",
   "background_color": "#121214",
   "theme_color": "#facc15",
@@ -9,7 +11,8 @@
     {
       "src": "https://cdn-icons-png.flaticon.com/512/2933/2933887.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
