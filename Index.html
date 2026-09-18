@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kartik Electrical | Industrial, Earthing & Lighting Specialists</title>
+  <style>
+    :root {
+      --bg: #121214;
+      --card-bg: #1b1c20;
+      --primary: #facc15;
+      --primary-hover: #eab308;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --border: #2e3036;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(18, 18, 20, 0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .nav-cta {
+      background: var(--primary);
+      color: #000;
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--primary-hover);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4.5rem 1.5rem 3.5rem;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #25282f;
+      color: var(--primary);
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(250, 204, 21, 0.2);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.6rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: transform 0.15s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #000;
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: #fff;
+    }
+
+    .btn-email {
+      background: #1f2937;
+      color: #f3f4f6;
+      border: 1px solid var(--border);
+    }
+
+    .services {
+      padding: 3.5rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.8rem;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+      color: #fff;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .trust {
+      background: #17181c;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+
+    .trust-items {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .trust-box h4 {
+      font-size: 1.15rem;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .trust-box p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .contact-line {
+      margin-top: 0.6rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">⚡ KARTIK <span>ELECTRICAL</span></div>
+    <div class="nav-actions">
+      <a href="tel:+917275290736" class="nav-cta">Call Now</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="badge">Industrial • Commercial • Residential</div>
+    <h1>Specialized Industrial Electrical & Lighting Solutions</h1>
+    <p>Turnkey power distribution, certified earthing installations, high-altitude aviation lighting, and heavy-duty industrial contracting.</p>
+    
+    <div class="btn-group">
+      <a href="tel:+917275290736" class="btn btn-primary">📞 Call: 072752 90736</a>
+      <a href="https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20I%20have%20an%20electrical/industrial%20inquiry." class="btn btn-whatsapp">💬 WhatsApp Us</a>
+      <a href="mailto:kartikelectrical1080@gmail.com" class="btn btn-email">✉️ Email Us</a>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="services">
+    <div class="section-title">
+      <h2>Comprehensive Capabilities</h2>
+      <p>Precision execution for industrial infrastructure, commercial facilities, and residential projects.</p>
+    </div>
+
+    <div class="grid">
+      <!-- Service 1: Earthing -->
+      <div class="card">
+        <div class="card-icon">⏚</div>
+        <h3>Earthing & Grounding Systems</h3>
+        <p>Complete chemical earthing, copper & GI plate/rod installations, earth pit testing, and surge protection for sensitive industrial equipment and buildings.</p>
+      </div>
+
+      <!-- Service 2: Aviation Lighting -->
+      <div class="card">
+        <div class="card-icon">🗼</div>
+        <h3>Aviation Obstruction Lighting</h3>
+        <p>Supply, wiring, and maintenance of certified aviation warning beacon lights (low, medium, and high intensity) for telecom towers, high-rises, and industrial chimneys.</p>
+      </div>
+
+      <!-- Service 3: Industrial Electrical Work -->
+      <div class="card">
+        <div class="card-icon">🏭</div>
+        <h3>Industrial Plant & Factory Work</h3>
+        <p>LT/HT panel installations, cable tray layout, heavy motor connections, bus ducting, load balancing, and breakdown maintenance for production facilities.</p>
+      </div>
+
+      <!-- Service 4: All Kinds of Lighting -->
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h3>All-Scale Lighting Installations</h3>
+        <p>Comprehensive lighting design and fitting: high-bay warehouse lights, street & perimeter floodlights, commercial facade lighting, architectural profiles, and ambient LEDs.</p>
+      </div>
+
+      <!-- Service 5: Panel & MCB Maintenance -->
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Switchgear & Panel Upgrades</h3>
+        <p>Distribution boards, circuit breaker overhauls, busbar repairs, capacitor banks for power factor correction, and short-circuit troubleshooting.</p>
+      </div>
+
+      <!-- Service 6: Turnkey Wiring & Emergency -->
+      <div class="card">
+        <div class="card-icon">🚨</div>
+        <h3>Turnkey Rewiring & Emergency Support</h3>
+        <p>Concealed and armored cable runs for large commercial properties, emergency power failure resolution, and routine safety audits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <section class="trust">
+    <div class="trust-items">
+      <div class="trust-box">
+        <h4>Industrial Safety Compliance</h4>
+        <p>Adherence to electrical codes & standards</p>
+      </div>
+      <div class="trust-box">
+        <h4>Certified Earthing</h4>
+        <p>Verified low earth resistance values</p>
+      </div>
+      <div class="trust-box">
+        <h4>Rapid Mobilization</h4>
+        <p>Reliable team ready for industrial sites</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p><strong>Kartik Electrical</strong> • Safe Hands. Reliable Power.</p>
+    
+    <div class="contact-line">
+      <span>📞 <a href="tel:+917275290736">+91 72752 90736</a></span>
+      <span>✉️ <a href="mailto:kartikelectrical1080@gmail.com">kartikelectrical1080@gmail.com</a></span>
+    </div>
+
+    <p style="margin-top: 0.8rem;">Serving Mumbai, Thane, Navi Mumbai, and surrounding Industrial Zones</p>
+    <p style="margin-top: 1.2rem; opacity: 0.6;">© 2026 Kartik Electrical. All rights reserved.</p>
+  </footer>
+
+</body>
+  </html>
+  
