@@ -3,31 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0d0e12" />
+  <meta name="theme-color" content="#090a0f" />
   <link rel="manifest" href="./manifest.json">
-  <title>Kartik Electrical | 3-Phase Industrial, Earthing & Lighting Specialists</title>
+  <title>Kartik Electrical | Enterprise Industrial Contracting, Earthing & Lighting</title>
   <style>
     :root {
-      --bg: #0b0c10;
-      --card-bg: #14161d;
-      --card-hover: #1c1f29;
-      --border: #242836;
+      --bg: #08090d;
+      --bg-alt: #0e1017;
+      --card-bg: #131620;
+      --card-hover: #191d2b;
+      --border: #232838;
+      --border-light: #2f364d;
       --text: #f3f4f6;
       --muted: #9ca3af;
       
       /* Electric RYB 3-Phase Palette */
-      --ryb-red: #ff3344;
+      --ryb-red: #ff2e43;
       --ryb-yellow: #facc15;
       --ryb-blue: #2563eb;
-      --ryb-blue-electric: #00d2ff;
-      --ryb-gradient: linear-gradient(90deg, #ff3344 0%, #facc15 50%, #2563eb 100%);
+      --ryb-cyan: #00d4ff;
+      --ryb-gradient: linear-gradient(90deg, #ff2e43 0%, #facc15 50%, #00d4ff 100%);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -49,31 +51,91 @@
       background: linear-gradient(90deg, var(--ryb-red) 33.33%, var(--ryb-yellow) 33.33%, var(--ryb-yellow) 66.66%, var(--ryb-blue) 66.66%);
       position: sticky;
       top: 0;
-      z-index: 101;
+      z-index: 105;
     }
 
-    /* Header */
+    /* Enterprise Top Utility Bar */
+    .utility-bar {
+      background: #050608;
+      border-bottom: 1px solid var(--border);
+      padding: 6px 5%;
+      font-size: 0.74rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .utility-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .utility-pill {
+      background: rgba(250, 204, 21, 0.12);
+      color: var(--ryb-yellow);
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 0.68rem;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .utility-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 600;
+    }
+
+    .utility-right a {
+      color: var(--ryb-cyan);
+      text-decoration: none;
+    }
+
+    /* Main Sticky Header */
     header {
       position: sticky;
       top: 4px;
-      background: rgba(11, 12, 16, 0.94);
+      background: rgba(11, 13, 19, 0.95);
       border-bottom: 1px solid var(--border);
       padding: 0.85rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand-wrap {
+      display: flex;
+      flex-direction: column;
     }
 
     .logo {
       font-weight: 900;
-      font-size: 1.15rem;
+      font-size: 1.18rem;
       color: #fff;
       display: flex;
       align-items: center;
       gap: 8px;
       text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-sub {
+      font-size: 0.66rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-top: 1px;
+      font-weight: 700;
     }
 
     .phase-dots {
@@ -90,7 +152,7 @@
     }
     .phase-dot.r { background: var(--ryb-red); box-shadow: 0 0 8px var(--ryb-red); }
     .phase-dot.y { background: var(--ryb-yellow); box-shadow: 0 0 8px var(--ryb-yellow); }
-    .phase-dot.b { background: var(--ryb-blue); box-shadow: 0 0 8px var(--ryb-blue-electric); }
+    .phase-dot.b { background: var(--ryb-blue); box-shadow: 0 0 8px var(--ryb-cyan); }
 
     .logo span {
       background: var(--ryb-gradient);
@@ -107,60 +169,89 @@
 
     .install-btn {
       display: none;
-      background: #1c202a;
+      background: #181c29;
       color: var(--ryb-yellow);
       border: 1px solid rgba(250, 204, 21, 0.4);
       font-weight: 700;
-      padding: 0.45rem 0.8rem;
+      padding: 0.45rem 0.75rem;
       border-radius: 6px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       cursor: pointer;
+    }
+
+    .nav-tender {
+      background: #1a2030;
+      color: #fff;
+      border: 1px solid var(--border-light);
+      font-weight: 700;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      display: none;
+    }
+
+    @media (min-width: 640px) {
+      .nav-tender {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
     }
 
     .nav-cta {
       background: var(--ryb-yellow);
-      color: #0b0c10;
+      color: #08090d;
       font-weight: 800;
-      padding: 0.45rem 0.9rem;
+      padding: 0.48rem 0.95rem;
       border-radius: 6px;
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       transition: transform 0.15s ease;
+      box-shadow: 0 0 12px rgba(250, 204, 21, 0.25);
     }
 
     .nav-cta:active {
       transform: scale(0.96);
     }
 
-    /* Hero Section */
+    /* Enterprise Hero Section */
+    .hero-wrapper {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 46, 67, 0.08), transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(0, 212, 255, 0.08), transparent 40%),
+        linear-gradient(180deg, #0b0d14 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 1.25rem 2.5rem;
+    }
+
     .hero {
       text-align: center;
-      padding: 3.5rem 1.25rem 2.5rem;
-      max-width: 880px;
+      max-width: 920px;
       margin: 0 auto;
-      position: relative;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #161922;
-      color: var(--text);
+      background: #141824;
+      color: #e5e7eb;
       padding: 0.4rem 1rem;
       border-radius: 50px;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      margin-bottom: 1.2rem;
-      border: 1px solid var(--border);
+      margin-bottom: 1.1rem;
+      border: 1px solid var(--border-light);
     }
 
     h1 {
-      font-size: clamp(1.85rem, 5vw, 2.6rem);
-      line-height: 1.22;
+      font-size: clamp(1.85rem, 4.8vw, 2.75rem);
+      line-height: 1.18;
       margin-bottom: 1rem;
       font-weight: 900;
       color: #fff;
+      letter-spacing: -0.5px;
     }
 
     .gradient-word {
@@ -171,10 +262,24 @@
 
     .hero p {
       color: var(--muted);
-      font-size: 1.02rem;
-      margin-bottom: 2rem;
-      max-width: 660px;
+      font-size: 1rem;
+      margin-bottom: 1.4rem;
+      max-width: 720px;
       margin-inline: auto;
+    }
+
+    .contractor-notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      color: #dbeafe;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      margin-bottom: 1.8rem;
     }
 
     .btn-group {
@@ -189,11 +294,11 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      padding: 0.85rem 1.4rem;
+      padding: 0.85rem 1.35rem;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 800;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       cursor: pointer;
       border: none;
       transition: transform 0.15s ease;
@@ -205,7 +310,7 @@
 
     .btn-primary {
       background: var(--ryb-yellow);
-      color: #0b0c10;
+      color: #08090d;
       box-shadow: 0 4px 15px rgba(250, 204, 21, 0.25);
     }
 
@@ -220,47 +325,148 @@
       color: #fff;
     }
 
-    /* 3-Phase RYB Highlights Bar */
+    .btn-outline {
+      background: #151926;
+      color: #fff;
+      border: 1px solid var(--border-light);
+    }
+
+    /* 3-Phase RYB Technical Metrics Bar */
     .stats-bar {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px;
-      max-width: 1000px;
-      margin: 0 auto 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 12px;
+      max-width: 1120px;
+      margin: -1.2rem auto 2rem;
       padding: 0 1.25rem;
+      position: relative;
+      z-index: 10;
     }
 
     .stat-card {
-      background: #14161d;
+      background: #12151f;
       border-radius: 10px;
-      padding: 12px;
+      padding: 14px 12px;
       text-align: center;
-      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.45);
     }
 
-    .stat-card.r { border: 1px solid rgba(255, 51, 68, 0.25); border-top: 3px solid var(--ryb-red); }
-    .stat-card.y { border: 1px solid rgba(250, 204, 21, 0.25); border-top: 3px solid var(--ryb-yellow); }
-    .stat-card.b { border: 1px solid rgba(37, 99, 235, 0.25); border-top: 3px solid var(--ryb-blue); }
+    .stat-card.r { border: 1px solid rgba(255, 46, 67, 0.28); border-top: 3px solid var(--ryb-red); }
+    .stat-card.y { border: 1px solid rgba(250, 204, 21, 0.28); border-top: 3px solid var(--ryb-yellow); }
+    .stat-card.b { border: 1px solid rgba(0, 212, 255, 0.28); border-top: 3px solid var(--ryb-blue); }
 
     .stat-card strong {
       display: block;
       font-size: 1.15rem;
       font-weight: 900;
+      letter-spacing: -0.3px;
     }
     .stat-card.r strong { color: var(--ryb-red); }
     .stat-card.y strong { color: var(--ryb-yellow); }
-    .stat-card.b strong { color: var(--ryb-blue-electric); }
+    .stat-card.b strong { color: var(--ryb-cyan); }
 
     .stat-card span {
       color: var(--muted);
-      font-size: 0.75rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    /* OEM Brand Ecosystem Section */
+    .oem-section {
+      max-width: 1120px;
+      margin: 1rem auto 2.5rem;
+      padding: 0 1.25rem;
+    }
+
+    .oem-container {
+      background: linear-gradient(145deg, #11141f, #0d1018);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 1.25rem;
+    }
+
+    .oem-header {
+      text-align: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .oem-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ryb-yellow);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .oem-header h3 {
+      font-size: 1.25rem;
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .oem-header p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .oem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .oem-card {
+      background: #171b29;
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 12px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .oem-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--ryb-yellow);
+    }
+
+    .oem-card.goldmedal {
+      border: 1px solid rgba(255, 46, 67, 0.5);
+      background: linear-gradient(160deg, #1f1621 0%, #161926 100%);
+    }
+
+    .oem-name {
+      font-weight: 900;
+      font-size: 0.98rem;
+      color: #fff;
+      letter-spacing: 0.3px;
+    }
+
+    .oem-card.goldmedal .oem-name {
+      color: #ff4757;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .oem-desc {
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 3px;
       font-weight: 600;
     }
 
     /* Services Grid */
     .services {
-      padding: 2.5rem 1.25rem;
-      max-width: 1100px;
+      padding: 1.5rem 1.25rem 3rem;
+      max-width: 1120px;
       margin: 0 auto;
     }
 
@@ -270,7 +476,7 @@
     }
 
     .section-title h2 {
-      font-size: 1.8rem;
+      font-size: 1.85rem;
       margin-bottom: 0.4rem;
       font-weight: 900;
     }
@@ -282,8 +488,8 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 1.3rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.4rem;
     }
 
     .card {
@@ -310,7 +516,7 @@
     .img-wrapper {
       position: relative;
       width: 100%;
-      height: 180px;
+      height: 185px;
       border-radius: 10px;
       overflow: hidden;
       margin-bottom: 12px;
@@ -330,26 +536,40 @@
       transform: scale(1.04);
     }
 
+    .std-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(8, 9, 13, 0.88);
+      color: #e5e7eb;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.15);
+      pointer-events: none;
+    }
+
     .gallery-badge {
       position: absolute;
       bottom: 8px;
       right: 8px;
-      background: rgba(11, 12, 16, 0.9);
-      padding: 4px 8px;
+      background: rgba(11, 12, 16, 0.92);
+      padding: 4px 9px;
       border-radius: 6px;
       font-size: 0.72rem;
-      font-weight: 700;
+      font-weight: 800;
       pointer-events: none;
     }
-    .card-r .gallery-badge { color: var(--ryb-red); border: 1px solid rgba(255, 51, 68, 0.4); }
-    .card-y .gallery-badge { color: var(--ryb-yellow); border: 1px solid rgba(250, 204, 21, 0.4); }
-    .card-b .gallery-badge { color: var(--ryb-blue-electric); border: 1px solid rgba(37, 99, 235, 0.4); }
+    .card-r .gallery-badge { color: var(--ryb-red); border: 1px solid rgba(255, 46, 67, 0.45); }
+    .card-y .gallery-badge { color: var(--ryb-yellow); border: 1px solid rgba(250, 204, 21, 0.45); }
+    .card-b .gallery-badge { color: var(--ryb-cyan); border: 1px solid rgba(0, 212, 255, 0.45); }
 
     .card-header {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.45rem;
     }
 
     .card-icon {
@@ -364,12 +584,30 @@
 
     .card p {
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
+      margin-bottom: 12px;
       flex-grow: 1;
     }
 
+    /* Engineering Spec Chips */
+    .spec-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .spec-chip {
+      background: #0d1017;
+      border: 1px solid var(--border-light);
+      color: #cbd5e1;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
     .card-action {
-      margin-top: 12px;
       padding-top: 10px;
       border-top: 1px solid var(--border);
       display: flex;
@@ -380,64 +618,95 @@
     }
     .card-r .card-action { color: var(--ryb-red); }
     .card-y .card-action { color: var(--ryb-yellow); }
-    .card-b .card-action { color: var(--ryb-blue-electric); }
+    .card-b .card-action { color: var(--ryb-cyan); }
 
-    /* Trust Section */
-    .trust {
-      background: #11131a;
+    /* Turnkey EPC Execution Workflow */
+    .workflow-section {
+      background: var(--bg-alt);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 2.5rem 1.25rem;
-      text-align: center;
+      padding: 3rem 1.25rem;
     }
 
-    .trust-items {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 1.25rem;
-      max-width: 900px;
+    .workflow-inner {
+      max-width: 1100px;
       margin: 0 auto;
     }
 
-    .trust-box h4 {
-      font-size: 1.05rem;
-      margin-bottom: 0.2rem;
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.8rem;
+    }
+
+    .step-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      position: relative;
+    }
+
+    .step-num {
+      font-size: 0.72rem;
+      font-weight: 900;
+      color: var(--ryb-yellow);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .step-box h4 {
+      font-size: 1.02rem;
+      color: #fff;
+      margin-bottom: 6px;
       font-weight: 800;
     }
-    .trust-box:nth-child(1) h4 { color: var(--ryb-red); }
-    .trust-box:nth-child(2) h4 { color: var(--ryb-yellow); }
-    .trust-box:nth-child(3) h4 { color: var(--ryb-blue-electric); }
 
-    .trust-box p {
+    .step-box p {
+      font-size: 0.83rem;
       color: var(--muted);
-      font-size: 0.85rem;
     }
 
-    /* Consultation Form */
+    /* Project Tender & BOQ Consultation Form */
+    .form-wrapper {
+      padding: 2.5rem 12px;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
     .form-section {
       background: var(--card-bg);
-      padding: 24px 18px;
-      border-radius: 14px;
-      margin: 2rem auto;
-      max-width: 650px;
+      padding: 26px 20px;
+      border-radius: 16px;
       border: 1px solid var(--border);
       border-top: 3px solid var(--ryb-yellow);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
     }
 
-    .form-wrapper {
-      padding: 0 12px;
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 600px) {
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     .form-input {
       width: 100%;
-      padding: 11px;
+      padding: 11px 12px;
       border-radius: 8px;
-      border: 1px solid #333745;
-      background: #090a0d;
+      border: 1px solid #33384a;
+      background: #090b10;
       color: #fff;
       margin-bottom: 12px;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
 
     .form-input:focus {
@@ -450,7 +719,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(9, 10, 13, 0.97);
+      background: rgba(8, 9, 13, 0.98);
       z-index: 9999;
       flex-direction: column;
       padding: 16px;
@@ -462,7 +731,7 @@
     }
 
     .modal-top {
-      max-width: 1000px;
+      max-width: 1040px;
       width: 100%;
       margin: 0 auto 12px;
     }
@@ -480,7 +749,7 @@
       font-size: 1.15rem;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .modal-close {
@@ -530,9 +799,9 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
       gap: 10px;
-      max-width: 1000px;
+      max-width: 1040px;
       width: 100%;
       margin: 0 auto;
       padding-bottom: 30px;
@@ -542,7 +811,7 @@
       position: relative;
       border-radius: 8px;
       overflow: hidden;
-      height: 145px;
+      height: 150px;
       border: 1px solid #272c3d;
       cursor: pointer;
       background: #12141c;
@@ -558,7 +827,7 @@
       position: absolute;
       bottom: 0;
       inset-inline: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.88));
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
       color: #fff;
       font-size: 0.7rem;
       padding: 12px 6px 6px;
@@ -629,7 +898,7 @@
       font-size: 0.88rem;
     }
 
-    /* Floating Action Dock (AI Chat + WhatsApp) */
+    /* Floating Action Dock */
     .action-dock {
       position: fixed;
       bottom: 18px;
@@ -679,12 +948,12 @@
       bottom: 80px;
       right: 18px;
       width: min(360px, calc(100vw - 36px));
-      height: 480px;
+      height: 490px;
       background: #12141c;
       border-radius: 16px;
       border: 1px solid var(--border);
       border-top: 3px solid var(--ryb-yellow);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75);
       flex-direction: column;
       overflow: hidden;
       z-index: 9005;
@@ -710,7 +979,7 @@
     }
 
     .chat-title {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 800;
       color: #fff;
       display: flex;
@@ -745,10 +1014,10 @@
     }
 
     .chat-msg {
-      max-width: 84%;
+      max-width: 85%;
       padding: 9px 12px;
       border-radius: 12px;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       line-height: 1.45;
     }
 
@@ -791,11 +1060,6 @@
       font-weight: 700;
       white-space: nowrap;
       cursor: pointer;
-    }
-
-    .chat-chip:active {
-      background: var(--ryb-yellow);
-      color: #0b0c10;
     }
 
     .chat-input-bar {
@@ -842,10 +1106,11 @@
 
     /* Footer */
     footer {
+      background: #050608;
       text-align: center;
-      padding: 2.5rem 1.25rem 5rem;
+      padding: 2.8rem 1.25rem 5rem;
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       border-top: 1px solid var(--border);
     }
 
@@ -856,7 +1121,7 @@
     }
 
     .contact-line {
-      margin-top: 0.5rem;
+      margin-top: 0.6rem;
       display: flex;
       justify-content: center;
       gap: 1.25rem;
@@ -869,67 +1134,136 @@
   <!-- Top 3-Phase Voltage Stripe -->
   <div class="ryb-top-line"></div>
 
+  <!-- Enterprise Top Utility Bar -->
+  <div class="utility-bar">
+    <div class="utility-left">
+      <span class="utility-pill">⚡ Turnkey EPC Contractors</span>
+      <span>🇮🇳 Pan-India Site Mobilization</span>
+      <span>•</span>
+      <span>IS 3043 / CEA Compliant Execution</span>
+    </div>
+    <div class="utility-right">
+      <span>Project Tender Desk: <a href="tel:+917275290736">+91 72752 90736</a></span>
+    </div>
+  </div>
+
   <!-- Header -->
   <header>
-    <a href="#" class="logo">
-      <div class="phase-dots">
-        <span class="phase-dot r" title="R Phase (Red)"></span>
-        <span class="phase-dot y" title="Y Phase (Yellow)"></span>
-        <span class="phase-dot b" title="B Phase (Blue)"></span>
-      </div>
-      ⚡ KARTIK <span>ELECTRICAL</span>
-    </a>
+    <div class="brand-wrap">
+      <a href="#" class="logo">
+        <div class="phase-dots">
+          <span class="phase-dot r" title="R Phase (Red)"></span>
+          <span class="phase-dot y" title="Y Phase (Yellow)"></span>
+          <span class="phase-dot b" title="B Phase (Blue)"></span>
+        </div>
+        ⚡ KARTIK <span>ELECTRICAL</span>
+      </a>
+      <span class="brand-sub">Industrial Contracting • Earthing • Aviation Lighting</span>
+    </div>
     <div class="nav-actions">
       <button type="button" id="installAppBtn" class="install-btn">📲 Install App</button>
+      <a href="#contact-form" class="nav-tender">📋 Submit Project BOQ</a>
       <a href="tel:+917275290736" class="nav-cta">📞 Call Now</a>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="badge">
-      <div class="phase-dots">
-        <span class="phase-dot r"></span>
-        <span class="phase-dot y"></span>
-        <span class="phase-dot b"></span>
+  <div class="hero-wrapper">
+    <section class="hero">
+      <div class="badge">
+        <div class="phase-dots">
+          <span class="phase-dot r"></span>
+          <span class="phase-dot y"></span>
+          <span class="phase-dot b"></span>
+        </div>
+        R • Y • B Three-Phase Engineering & Contracting
       </div>
-      R • Y • B Three-Phase Power • Industrial & Commercial
-    </div>
-    <h1>Specialized <span class="gradient-word">Industrial Electrical</span> & Lighting Solutions</h1>
-    <p>Turnkey power distribution, certified chemical earthing installations, high-altitude aviation lighting, and heavy-duty industrial contracting across India.</p>
-    
-    <div class="btn-group">
-      <a href="tel:+917275290736" class="btn btn-primary">📞 Call: 072752 90736</a>
-      <a href="https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20I%20have%20an%20electrical/industrial%20inquiry." class="btn btn-whatsapp">💬 WhatsApp Us</a>
-      <button type="button" class="btn btn-blue" onclick="openGallery('All Project Photos', 'all')">🖼️ View Project Gallery</button>
-    </div>
-  </section>
+      <h1>Enterprise-Grade <span class="gradient-word">Industrial Electrical</span>, Earthing & Lighting Contracting</h1>
+      <p>End-to-end turnkey project execution: LT/HT switchgear commissioning, certified IS 3043 chemical earthing pits, overhead cable tray routing, and high-altitude aviation lighting across India.</p>
+      
+      <div class="contractor-notice">
+        🛠️ <strong>100% Turnkey Contracting & Installation:</strong> We execute complete on-site electrical projects using certified OEM hardware (Not a retail counter shop).
+      </div>
 
-  <!-- RYB 3-Phase Highlights Bar -->
+      <div class="btn-group">
+        <a href="tel:+917275290736" class="btn btn-primary">📞 Call: 072752 90736</a>
+        <a href="https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20we%20have%20a%20turnkey%20electrical%20project/BOQ%20inquiry." class="btn btn-whatsapp">💬 WhatsApp Tender Desk</a>
+        <button type="button" class="btn btn-blue" onclick="openGallery('All Project Photos', 'all')">🖼️ View Site Gallery</button>
+        <a href="#contact-form" class="btn btn-outline">📋 Request Site Audit</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- RYB 3-Phase Technical Specs Bar -->
   <div class="stats-bar">
     <div class="stat-card r">
-      <strong>R - Phase</strong>
-      <span>LT/HT Heavy Panels</span>
+      <strong>11kV / 415V</strong>
+      <span>R-Phase • LT/HT Panels</span>
     </div>
     <div class="stat-card y">
-      <strong>Y - Phase</strong>
-      <span>Chemical Earthing Pit</span>
+      <strong>&lt; 1.0 Ohm</strong>
+      <span>Y-Phase • IS 3043 Earthing</span>
     </div>
     <div class="stat-card b">
-      <strong>B - Phase</strong>
-      <span>Aviation & Plant Lighting</span>
+      <strong>IP66 / ICAO</strong>
+      <span>B-Phase • Aviation & LEDs</span>
     </div>
     <div class="stat-card y">
-      <strong>Pan-India</strong>
-      <span>Certified Compliance</span>
+      <strong>Turnkey EPC</strong>
+      <span>Supply, Erection & Testing</span>
     </div>
   </div>
 
-  <!-- Services Grid -->
+  <!-- OEM Brand Ecosystem (Featuring Goldmedal & Tier-1 Industrial Brands) -->
+  <section class="oem-section">
+    <div class="oem-container">
+      <div class="oem-header">
+        <span class="oem-tag">Genuine Project Hardware Ecosystem</span>
+        <h3>Tier-1 OEM Brands Deployed in Our Turnkey Projects</h3>
+        <p>We do not sell loose retail parts. We supply, install, and commission 100% genuine factory-grade switchgear, wiring, and lighting as part of our contracting projects.</p>
+      </div>
+      <div class="oem-grid">
+        <div class="oem-card goldmedal">
+          <span class="oem-name">GOLDMEDAL</span>
+          <span class="oem-desc">Modular Systems & LEDs</span>
+        </div>
+        <div class="oem-card">
+          <span class="oem-name">L&amp;T Switchgear</span>
+          <span class="oem-desc">ACB / MCCB & Panels</span>
+        </div>
+        <div class="oem-card">
+          <span class="oem-name">Schneider</span>
+          <span class="oem-desc">Industrial Automation</span>
+        </div>
+        <div class="oem-card">
+          <span class="oem-name">Polycab</span>
+          <span class="oem-desc">Armored HT/LT Cables</span>
+        </div>
+        <div class="oem-card">
+          <span class="oem-name">Siemens</span>
+          <span class="oem-desc">VFDs & Control Gear</span>
+        </div>
+        <div class="oem-card">
+          <span class="oem-name">Havells</span>
+          <span class="oem-desc">Distribution Boards</span>
+        </div>
+        <div class="oem-card">
+          <span class="oem-name">ABB</span>
+          <span class="oem-desc">Power Protection</span>
+        </div>
+        <div class="oem-card">
+          <span class="oem-name">Philips / Crompton</span>
+          <span class="oem-desc">High-Bay Luminaires</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid with Engineering Specs -->
   <section class="services">
     <div class="section-title">
-      <h2>Comprehensive Capabilities</h2>
-      <p>Tap any service card below to browse verified installation photos.</p>
+      <h2>Core Engineering & Contracting Capabilities</h2>
+      <p>Tap any project division below to inspect site installation photos and technical specifications.</p>
     </div>
 
     <div class="grid">
@@ -937,15 +1271,21 @@
       <div class="card card-y" data-category="earthing" data-title="Earthing & Grounding Systems">
         <div class="img-wrapper">
           <img src="1792820606285%20(2).png" alt="Chemical Earthing Installation" class="card-img" loading="lazy">
+          <span class="std-badge">IS 3043:2018</span>
           <span class="gallery-badge">📷 Tap for Gallery</span>
         </div>
         <div class="card-header">
           <div class="card-icon">⏚</div>
-          <h3>Earthing & Grounding Systems</h3>
+          <h3>Chemical Earthing & Grounding</h3>
         </div>
-        <p>Complete chemical earthing, copper & GI plate/rod installations, earth pit testing, and surge protection for sensitive industrial equipment and buildings.</p>
+        <p>Turnkey excavation, copper-bonded & GI pipe/plate electrode erection, conductive backfill compounding, earth pit chambering, and digital earth resistance certification.</p>
+        <div class="spec-list">
+          <span class="spec-chip">250μm Copper Bonded</span>
+          <span class="spec-chip">&lt; 1.0Ω Target</span>
+          <span class="spec-chip">Lightning Arresters</span>
+        </div>
         <div class="card-action">
-          <span>View Earthing Photos</span>
+          <span>Inspect Earthing Site Photos</span>
           <span>➔</span>
         </div>
       </div>
@@ -954,15 +1294,21 @@
       <div class="card card-r" data-category="lighting" data-title="Aviation Obstruction Lighting">
         <div class="img-wrapper">
           <img src="1792820643926%20(1).png" alt="Aviation Obstruction Lighting" class="card-img" loading="lazy">
+          <span class="std-badge">ICAO / DGCA Spec</span>
           <span class="gallery-badge">📷 Tap for Gallery</span>
         </div>
         <div class="card-header">
           <div class="card-icon">🗼</div>
           <h3>Aviation Obstruction Lighting</h3>
         </div>
-        <p>Supply, wiring, and maintenance of certified aviation warning beacon lights (low, medium, and high intensity) for telecom towers, high-rises, and chimneys.</p>
+        <p>High-altitude installation, armored cabling, photocell automation, and maintenance of twin/single dome LED aviation warning beacons for towers, chimneys, and high-rises.</p>
+        <div class="spec-list">
+          <span class="spec-chip">IP66 Weatherproof</span>
+          <span class="spec-chip">Auto Photocell</span>
+          <span class="spec-chip">Surge Protected</span>
+        </div>
         <div class="card-action">
-          <span>View Lighting Photos</span>
+          <span>Inspect Aviation Photos</span>
           <span>➔</span>
         </div>
       </div>
@@ -971,15 +1317,21 @@
       <div class="card card-b" data-category="wiring" data-title="Industrial Plant & Factory Work">
         <div class="img-wrapper">
           <img src="1792820625686%20(1).png" alt="Industrial Cable Tray Wiring" class="card-img" loading="lazy">
+          <span class="std-badge">Heavy EPC</span>
           <span class="gallery-badge">📷 Tap for Gallery</span>
         </div>
         <div class="card-header">
           <div class="card-icon">🏭</div>
-          <h3>Industrial Plant & Factory Work</h3>
+          <h3>Industrial Plant & Cable Trays</h3>
         </div>
-        <p>LT/HT panel installations, overhead cable tray layout, heavy motor connections, bus ducting, load balancing, and breakdown maintenance.</p>
+        <p>Perforated & ladder GI cable tray fabrication, overhead busbar trunking, heavy 3-phase motor terminations, and complete factory power distribution routing.</p>
+        <div class="spec-list">
+          <span class="spec-chip">Hot-Dip GI Trays</span>
+          <span class="spec-chip">Armored XLPE</span>
+          <span class="spec-chip">Load Balancing</span>
+        </div>
         <div class="card-action">
-          <span>View Industrial Photos</span>
+          <span>Inspect Industrial Photos</span>
           <span>➔</span>
         </div>
       </div>
@@ -988,15 +1340,21 @@
       <div class="card card-y" data-category="lighting" data-title="All-Scale Lighting Installations">
         <div class="img-wrapper">
           <img src="1792821005726%20(1).png" alt="Commercial Lighting Installation" class="card-img" loading="lazy">
+          <span class="std-badge">Goldmedal / Philips</span>
           <span class="gallery-badge">📷 Tap for Gallery</span>
         </div>
         <div class="card-header">
           <div class="card-icon">💡</div>
-          <h3>All-Scale Lighting Installations</h3>
+          <h3>Commercial, Hall & High-Bay Lighting</h3>
         </div>
-        <p>Comprehensive lighting design and fitting: high-bay warehouse lights, perimeter floodlights, commercial hall chandeliers, and architectural LEDs.</p>
+        <p>Turnkey illumination contracting: industrial warehouse high-bay LEDs, grand banquet chandelier erection, Goldmedal architectural profiles, and perimeter floodlighting.</p>
+        <div class="spec-list">
+          <span class="spec-chip">Goldmedal Modular</span>
+          <span class="spec-chip">High-Bay 200W+</span>
+          <span class="spec-chip">LUX Planning</span>
+        </div>
         <div class="card-action">
-          <span>View Lighting Photos</span>
+          <span>Inspect Lighting Photos</span>
           <span>➔</span>
         </div>
       </div>
@@ -1005,15 +1363,21 @@
       <div class="card card-r" data-category="panels" data-title="Switchgear & Panel Upgrades">
         <div class="img-wrapper">
           <img src="1792820963840%20(1).png" alt="Switchgear and Control Panel Upgrades" class="card-img" loading="lazy">
+          <span class="std-badge">L&amp;T / Schneider</span>
           <span class="gallery-badge">📷 Tap for Gallery</span>
         </div>
         <div class="card-header">
           <div class="card-icon">⚡</div>
-          <h3>Switchgear & Panel Upgrades</h3>
+          <h3>LT/HT Switchgear & APFC Panels</h3>
         </div>
-        <p>Distribution boards, circuit breaker overhauls, copper busbar repairs, VFD motor panels, capacitor banks, and short-circuit troubleshooting.</p>
+        <p>PCC, MCC, and APFC capacitor panel erection, electrolytic copper busbar chambering, ACB/MCCB retrofitting, VFD integration, and thermal fault diagnostics.</p>
+        <div class="spec-list">
+          <span class="spec-chip">0.99 Power Factor</span>
+          <span class="spec-chip">Copper Busbar</span>
+          <span class="spec-chip">L&amp;T / Siemens Gear</span>
+        </div>
         <div class="card-action">
-          <span>View Panel Photos</span>
+          <span>Inspect Panel Photos</span>
           <span>➔</span>
         </div>
       </div>
@@ -1022,68 +1386,108 @@
       <div class="card card-b" data-category="panels" data-title="Turnkey Rewiring & Emergency Support">
         <div class="img-wrapper">
           <img src="1792820985244%20(2).png" alt="Turnkey Rewiring and Emergency Support" class="card-img" loading="lazy">
+          <span class="std-badge">24/7 Rapid Response</span>
           <span class="gallery-badge">📷 Tap for Gallery</span>
         </div>
         <div class="card-header">
           <div class="card-icon">🚨</div>
-          <h3>Turnkey Rewiring & Emergency Support</h3>
+          <h3>Turnkey Rewiring & Breakdown Triage</h3>
         </div>
-        <p>Concealed and armored cable runs for large commercial properties, emergency power failure resolution, and routine electrical safety audits.</p>
+        <p>Commercial & residential building wiring with Goldmedal & Polycab FRLS conductors, underground cable fault localization, Megger insulation testing, and safety audits.</p>
+        <div class="spec-list">
+          <span class="spec-chip">FRLS Wiring</span>
+          <span class="spec-chip">Megger &amp; IR Tested</span>
+          <span class="spec-chip">Short-Circuit Fix</span>
+        </div>
         <div class="card-action">
-          <span>View Project Photos</span>
+          <span>Inspect Project Photos</span>
           <span>➔</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Trust Bar -->
-  <section class="trust">
-    <div class="trust-items">
-      <div class="trust-box">
-        <h4>Industrial Safety Compliance</h4>
-        <p>Adherence to Indian electrical codes & standards</p>
+  <!-- 4-Stage EPC Execution Workflow -->
+  <section class="workflow-section">
+    <div class="workflow-inner">
+      <div class="section-title" style="margin-bottom:1rem;">
+        <h2>How We Execute Turnkey Contracts</h2>
+        <p>Structured engineering workflow from initial site survey to final testing & handover.</p>
       </div>
-      <div class="trust-box">
-        <h4>Certified Earthing</h4>
-        <p>Verified low earth resistance values</p>
-      </div>
-      <div class="trust-box">
-        <h4>Rapid Mobilization</h4>
-        <p>Experienced team ready for industrial & commercial sites</p>
+      <div class="workflow-grid">
+        <div class="step-box">
+          <span class="step-num">Phase 01 • R</span>
+          <h4>Site Survey & Load Audit</h4>
+          <p>On-site inspection, connected load calculation, soil resistivity assessment, and BOQ preparation.</p>
+        </div>
+        <div class="step-box">
+          <span class="step-num">Phase 02 • Y</span>
+          <h4>OEM Hardware Mobilization</h4>
+          <p>Direct deployment of certified Goldmedal, L&amp;T, Schneider, and Polycab materials to your project site.</p>
+        </div>
+        <div class="step-box">
+          <span class="step-num">Phase 03 • B</span>
+          <h4>Precision Erection & Wiring</h4>
+          <p>Execution by licensed industrial electricians following IS 732 &amp; IS 3043 safety protocols.</p>
+        </div>
+        <div class="step-box">
+          <span class="step-num">Phase 04 • Handover</span>
+          <h4>Testing & Commissioning</h4>
+          <p>Earth pit resistance verification, Megger insulation testing, load balancing, and project sign-off.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Lead Capture Form -->
+  <!-- Project Tender & BOQ Consultation Form -->
   <div class="form-wrapper">
     <section id="contact-form" class="form-section">
-      <h3 style="color:var(--ryb-yellow); font-size:20px; margin-bottom:6px;">Request a Service Consultation</h3>
-      <p style="color:#a1a1aa; font-size:14px; margin-bottom:16px;">Direct triage for chemical earthing tests, aviation lights, and industrial panel works.</p>
+      <h3 style="color:var(--ryb-yellow); font-size:21px; margin-bottom:4px; font-weight:900;">Submit Project Requirement / Request Site Audit</h3>
+      <p style="color:#a1a1aa; font-size:13.5px; margin-bottom:18px;">Direct contracting desk for industrial plants, commercial buildings, earthing projects, and aviation lighting.</p>
       
       <form action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="6b268f35-f1e1-4dbd-bfc7-378f8b7734b7">
-        <input type="hidden" name="subject" value="New Service Lead - Kartik Electrical">
+        <input type="hidden" name="subject" value="New Turnkey Project Lead - Kartik Electrical">
 
-        <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Full Name *</label>
-        <input type="text" name="name" required placeholder="Your Name or Company Name" class="form-input">
+        <div class="form-grid">
+          <div>
+            <label style="display:block; font-size:12.5px; margin-bottom:4px; color:#e4e4e7; font-weight:700;">Full Name / Company Name *</label>
+            <input type="text" name="name" required placeholder="e.g. Rajesh Sharma / Apex Industries" class="form-input">
+          </div>
+          <div>
+            <label style="display:block; font-size:12.5px; margin-bottom:4px; color:#e4e4e7; font-weight:700;">Phone / WhatsApp Number *</label>
+            <input type="tel" name="phone" required placeholder="10-digit mobile number" class="form-input">
+          </div>
+        </div>
 
-        <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Phone Number *</label>
-        <input type="tel" name="phone" required placeholder="10-digit mobile number" class="form-input">
+        <div class="form-grid">
+          <div>
+            <label style="display:block; font-size:12.5px; margin-bottom:4px; color:#e4e4e7; font-weight:700;">Contracting Scope Needed *</label>
+            <select name="service" class="form-input">
+              <option value="Chemical Earthing & Resistance Testing">Chemical Earthing & Resistance Testing</option>
+              <option value="LT/HT Panel & Switchgear Contracting">LT/HT Panel & Switchgear Contracting</option>
+              <option value="Aviation Obstruction Lighting">Aviation Obstruction Lighting</option>
+              <option value="Industrial Cable Tray & Factory Wiring">Industrial Cable Tray & Factory Wiring</option>
+              <option value="Commercial / Hall Lighting (Goldmedal / Philips)">Commercial / Hall Lighting (Goldmedal / Philips)</option>
+              <option value="Emergency Breakdown / Fault Resolution">Emergency Breakdown / Fault Resolution</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:12.5px; margin-bottom:4px; color:#e4e4e7; font-weight:700;">Preferred OEM Hardware Make</label>
+            <select name="preferred_brand" class="form-input">
+              <option value="Standard Tier-1 Make (Contractor Recommended)">Standard Tier-1 Make (Recommended)</option>
+              <option value="Goldmedal Modular & LED Systems">Goldmedal Modular & LED Systems</option>
+              <option value="L&T / Schneider / Siemens Switchgear">L&amp;T / Schneider / Siemens Switchgear</option>
+              <option value="Polycab / Havells Cables & Distribution">Polycab / Havells Cables & Distribution</option>
+            </select>
+          </div>
+        </div>
 
-        <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Service Needed *</label>
-        <select name="service" class="form-input">
-          <option value="Chemical Earthing & Testing">Chemical Earthing & Testing</option>
-          <option value="Aviation Obstruction Lighting">Aviation Obstruction Lighting</option>
-          <option value="Industrial Fault / Panel Breakdown">Industrial Fault / Panel Breakdown</option>
-          <option value="General Commercial & Hall Lighting">General Commercial & Hall Lighting</option>
-        </select>
+        <label style="display:block; font-size:12.5px; margin-bottom:4px; color:#e4e4e7; font-weight:700;">Site Location & Project / BOQ Details</label>
+        <textarea name="location" rows="3" placeholder="Specify city, site type (factory, tower, commercial hall), number of earthing pits, or panel load details..." class="form-input"></textarea>
 
-        <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Site Location / Details</label>
-        <textarea name="location" rows="2" placeholder="City, locality, building type, or project requirement" class="form-input"></textarea>
-
-        <button type="submit" style="width:100%; padding:12px; border-radius:8px; border:none; background:var(--ryb-yellow); color:#09090b; font-weight:800; font-size:15px; cursor:pointer;">
-          Submit Enquiry
+        <button type="submit" style="width:100%; padding:13px; border-radius:8px; border:none; background:var(--ryb-yellow); color:#09090b; font-weight:900; font-size:15px; cursor:pointer;">
+          ⚡ Submit Turnkey Project Enquiry
         </button>
       </form>
     </section>
@@ -1127,8 +1531,8 @@
 
   <!-- Floating Action Dock -->
   <div class="action-dock">
-    <button type="button" class="dock-btn dock-ai" onclick="toggleAIChat()" title="Chat with AI Assistant">⚡</button>
-    <a href="https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20I%20want%20to%20discuss%20an%20electrical%20project." class="dock-btn dock-wa" aria-label="Chat on WhatsApp">💬</a>
+    <button type="button" class="dock-btn dock-ai" onclick="toggleAIChat()" title="Chat with AI Engineer Assistant">⚡</button>
+    <a href="https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20I%20want%20to%20discuss%20an%20electrical%20contracting%20project." class="dock-btn dock-wa" aria-label="Chat on WhatsApp">💬</a>
   </div>
 
   <!-- Built-In Electric AI Chat Window -->
@@ -1137,7 +1541,7 @@
       <div class="chat-header-info">
         <span class="status-dot"></span>
         <div class="chat-title">
-          ⚡ Kartik AI Assistant
+          ⚡ Kartik AI Technical Desk
           <div class="phase-dots">
             <span class="phase-dot r"></span>
             <span class="phase-dot y"></span>
@@ -1150,30 +1554,33 @@
     
     <div id="chatMessages" class="chat-messages">
       <div class="chat-msg bot">
-        Hello! I am the Kartik Electrical AI Assistant. How can I assist you with your project today?
+        Welcome to <strong>Kartik Electrical</strong>! We are turnkey industrial &amp; commercial electrical contractors (deploying Goldmedal, L&amp;T, Schneider &amp; Polycab hardware). How can we help with your site project?
       </div>
     </div>
 
     <div class="chat-chips">
       <button type="button" class="chat-chip" onclick="quickAsk('Chemical Earthing')">⏚ Earthing</button>
+      <button type="button" class="chat-chip" onclick="quickAsk('Goldmedal & Brands')">🏅 Goldmedal / OEMs</button>
       <button type="button" class="chat-chip" onclick="quickAsk('Aviation Lighting')">🗼 Aviation Lights</button>
       <button type="button" class="chat-chip" onclick="quickAsk('LT HT Panels')">⚡ Control Panels</button>
-      <button type="button" class="chat-chip" onclick="quickAsk('Request Quotation')">📄 Get Quote</button>
+      <button type="button" class="chat-chip" onclick="quickAsk('Request Quotation')">📄 Get Project Quote</button>
     </div>
 
     <div class="chat-input-bar">
-      <input type="text" id="chatInput" class="chat-input" placeholder="Ask a question..." onkeydown="handleChatKey(event)">
+      <input type="text" id="chatInput" class="chat-input" placeholder="Ask about earthing, panels, Goldmedal..." onkeydown="handleChatKey(event)">
       <button type="button" class="chat-send-btn" onclick="sendChatMessage()">➤</button>
     </div>
   </div>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 Kartik Electrical. All rights reserved.</p>
+    <p><strong>KARTIK ELECTRICAL</strong> — Turnkey Industrial, Commercial &amp; Earthing Contractors</p>
+    <p style="font-size:0.76rem; margin-top:4px; color:#6b7280;">Note: We execute complete on-site electrical contracting projects and do not operate a loose retail counter.</p>
     <div class="contact-line">
-      <a href="tel:+917275290736">📞 072752 90736</a>
+      <a href="tel:+917275290736">📞 +91 72752 90736</a>
       <a href="mailto:kartikelectrical1080@gmail.com">✉️ kartikelectrical1080@gmail.com</a>
     </div>
+    <p style="margin-top:12px; font-size:0.75rem;">&copy; 2026 Kartik Electrical. All rights reserved.</p>
   </footer>
 
   <!-- Scripts -->
@@ -1206,13 +1613,13 @@
 
     // 3. Project Gallery Data
     const projectGallery = [
-      { src: "1792820606285%20(2).png", category: "earthing", label: "Copper Chemical Earthing Pit" },
-      { src: "1792820643926%20(1).png", category: "lighting", label: "Aviation Obstruction Beacon" },
-      { src: "1792820625686%20(1).png", category: "wiring", label: "Overhead Industrial Cable Tray" },
-      { src: "1792821005726%20(1).png", category: "lighting", label: "High-Bay Warehouse Lighting" },
-      { src: "1792820985244%20(2).png", category: "panels", label: "Industrial Control Panel & Busbar" },
-      { src: "1792820963840%20(1).png", category: "panels", label: "Switchgear & Breaker Wiring" },
-      { src: "1792820584675%20(1).png", category: "panels", label: "LT/HT Distribution Panel" }
+      { src: "1792820606285%20(2).png", category: "earthing", label: "IS 3043 Copper Chemical Earthing Pit" },
+      { src: "1792820643926%20(1).png", category: "lighting", label: "ICAO Aviation Obstruction Beacon" },
+      { src: "1792820625686%20(1).png", category: "wiring", label: "Overhead GI Industrial Cable Tray" },
+      { src: "1792821005726%20(1).png", category: "lighting", label: "High-Bay Warehouse LED Illumination" },
+      { src: "1792820985244%20(2).png", category: "panels", label: "Industrial Control Panel & Copper Busbar" },
+      { src: "1792820963840%20(1).png", category: "panels", label: "L&T / Schneider Switchgear & Breaker Wiring" },
+      { src: "1792820584675%20(1).png", category: "panels", label: "LT/HT Main Distribution Panel" }
     ];
 
     let currentList = projectGallery.slice();
@@ -1332,22 +1739,25 @@
     function getAIResponse(query) {
       const q = query.toLowerCase();
 
+      if (q.includes('goldmedal') || q.includes('gold medal') || q.includes('brand') || q.includes('make') || q.includes('sell') || q.includes('shop') || q.includes('buy')) {
+        return "We are <strong>turnkey electrical contractors</strong> (we do not run a retail counter shop). In our contracting projects, we deploy 100% genuine <strong>Goldmedal</strong> modular systems &amp; architectural LEDs, alongside <strong>L&amp;T, Schneider Electric, Polycab, Siemens, and Havells</strong> industrial switchgear.<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20I%20have%20a%20turnkey%20project%20requiring%20Goldmedal/Tier-1%20hardware.' target='_blank'>Discuss Project Hardware</a>";
+      }
       if (q.includes('earth') || q.includes('ground') || q.includes('pit')) {
-        return "We execute complete chemical earthing, copper bonded & GI electrode installations, and precision earth resistance testing complying with Indian IS 3043 safety standards.<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi,%20I%20need%20chemical%20earthing%20services.' target='_blank'>Book Earthing Test</a>";
+        return "We execute complete IS 3043:2018 compliant chemical earthing, 250-micron copper-bonded &amp; GI electrode installations, and precision earth resistance testing (&lt; 1.0 Ohm target).<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi,%20I%20need%20chemical%20earthing%20contracting.' target='_blank'>Book Earthing Project</a>";
       }
-      if (q.includes('aviation') || q.includes('light') || q.includes('tower') || q.includes('beacon')) {
-        return "We install and maintain certified low, medium, and high-intensity LED aviation warning obstruction lights for telecom towers, chimneys, and high-rise commercial structures.<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi,%20I%20need%20aviation%20obstruction%20lighting.' target='_blank'>Inquire Aviation Lights</a>";
+      if (q.includes('aviation') || q.includes('light') || q.includes('tower') || q.includes('beacon') || q.includes('chandelier')) {
+        return "We install and maintain ICAO-compliant IP66 LED aviation warning lights for towers and chimneys, as well as Goldmedal commercial LEDs, grand hall chandeliers, and warehouse high-bay lights.<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi,%20I%20need%20lighting%20or%20aviation%20beacon%20installation.' target='_blank'>Inquire Lighting Project</a>";
       }
-      if (q.includes('panel') || q.includes('switchgear') || q.includes('mcb') || q.includes('lt') || q.includes('ht') || q.includes('vfd')) {
-        return "We handle LT/HT distribution panels, motor control centers (MCC), capacitor banks, copper busbar alignments, and fast breakdown repairs for industrial factories.<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi,%20I%20have%20an%20industrial%20panel%20inquiry.' target='_blank'>Discuss Panel Requirements</a>";
+      if (q.includes('panel') || q.includes('switchgear') || q.includes('mcb') || q.includes('lt') || q.includes('ht') || q.includes('vfd') || q.includes('tray')) {
+        return "We commission LT/HT distribution panels, APFC capacitor banks, copper busbars, and hot-dip GI cable trays using L&amp;T, Schneider, and Siemens switchgear.<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi,%20I%20have%20an%20industrial%20panel/cable%20tray%20inquiry.' target='_blank'>Discuss Panel / Plant Work</a>";
       }
-      if (q.includes('price') || q.includes('cost') || q.includes('rate') || q.includes('quote') || q.includes('quotation')) {
-        return "Quotations depend on site scope and specifications. You can submit the form on this page or message us directly on WhatsApp with your Bill of Quantities (BOQ).<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20please%20share%20a%20project%20quote.' target='_blank'>Get Quick Quote</a>";
+      if (q.includes('price') || q.includes('cost') || q.includes('rate') || q.includes('quote') || q.includes('quotation') || q.includes('boq')) {
+        return "Project quotations are prepared based on your site load or Bill of Quantities (BOQ). Share your project scope on WhatsApp or use the tender form on this page for a fast estimate.<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20please%20share%20a%20turnkey%20project%20quote.' target='_blank'>Send BOQ on WhatsApp</a>";
       }
       if (q.includes('contact') || q.includes('number') || q.includes('phone') || q.includes('call') || q.includes('address') || q.includes('location')) {
-        return "You can call us directly at <strong>072752 90736</strong> or email <strong>kartikelectrical1080@gmail.com</strong>. We mobilize teams across India.<br><a class='chat-action-btn' href='tel:+917275290736'>📞 Call Now</a>";
+        return "Call our project desk directly at <strong>072752 90736</strong> or email <strong>kartikelectrical1080@gmail.com</strong>. We mobilize turnkey contracting teams across India.<br><a class='chat-action-btn' href='tel:+917275290736'>📞 Call 072752 90736</a>";
       }
-      return "Thank you for reaching out! Kartik Electrical provides turnkey industrial power, chemical earthing, and aviation lighting solutions. Speak directly with our lead contractor here:<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=" + encodeURIComponent("Hi Kartik Electrical, I have a project inquiry regarding: " + query) + "' target='_blank'>💬 Chat on WhatsApp</a>";
+      return "Thank you for contacting <strong>Kartik Electrical</strong>! We specialize in turnkey industrial power, IS 3043 chemical earthing, and commercial lighting installation. Connect directly with our lead engineer:<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=" + encodeURIComponent("Hi Kartik Electrical, I have a contracting inquiry regarding: " + query) + "' target='_blank'>💬 WhatsApp Project Desk</a>";
     }
 
     function sendChatMessage() {
@@ -1373,7 +1783,7 @@
         botDiv.innerHTML = getAIResponse(text);
         container.appendChild(botDiv);
         container.scrollTop = container.scrollHeight;
-      }, 400);
+      }, 350);
     }
   </script>
 </body>
