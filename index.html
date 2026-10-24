@@ -3,19 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#121214" />
+  <meta name="theme-color" content="#0d0e12" />
   <link rel="manifest" href="./manifest.json">
-  <title>Kartik Electrical | Industrial, Earthing & Lighting Specialists</title>
+  <title>Kartik Electrical | 3-Phase Industrial, Earthing & Lighting Specialists</title>
   <style>
     :root {
-      --bg: #0f1012;
-      --card-bg: #18191d;
-      --card-hover: #21232a;
-      --primary: #facc15;
-      --primary-hover: #eab308;
+      --bg: #0b0c10;
+      --card-bg: #14161d;
+      --card-hover: #1c1f29;
+      --border: #242836;
       --text: #f3f4f6;
       --muted: #9ca3af;
-      --border: #2a2c33;
+      
+      /* Electric RYB 3-Phase Palette */
+      --ryb-red: #ff3344;
+      --ryb-yellow: #facc15;
+      --ryb-blue: #2563eb;
+      --ryb-blue-electric: #00d2ff;
+      --ryb-gradient: linear-gradient(90deg, #ff3344 0%, #facc15 50%, #2563eb 100%);
     }
 
     * {
@@ -37,18 +42,28 @@
       overflow-x: hidden;
     }
 
+    /* 3-Phase RYB Voltage Stripe on Top */
+    .ryb-top-line {
+      height: 4px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--ryb-red) 33.33%, var(--ryb-yellow) 33.33%, var(--ryb-yellow) 66.66%, var(--ryb-blue) 66.66%);
+      position: sticky;
+      top: 0;
+      z-index: 101;
+    }
+
     /* Header */
     header {
       position: sticky;
-      top: 0;
-      background: rgba(15, 16, 18, 0.95);
+      top: 4px;
+      background: rgba(11, 12, 16, 0.94);
       border-bottom: 1px solid var(--border);
       padding: 0.85rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
 
     .logo {
@@ -57,11 +72,31 @@
       color: #fff;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      text-decoration: none;
     }
 
+    .phase-dots {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .phase-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .phase-dot.r { background: var(--ryb-red); box-shadow: 0 0 8px var(--ryb-red); }
+    .phase-dot.y { background: var(--ryb-yellow); box-shadow: 0 0 8px var(--ryb-yellow); }
+    .phase-dot.b { background: var(--ryb-blue); box-shadow: 0 0 8px var(--ryb-blue-electric); }
+
     .logo span {
-      color: var(--primary);
+      background: var(--ryb-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 900;
     }
 
     .nav-actions {
@@ -72,9 +107,9 @@
 
     .install-btn {
       display: none;
-      background: #252830;
-      color: var(--primary);
-      border: 1px solid rgba(250, 204, 21, 0.35);
+      background: #1c202a;
+      color: var(--ryb-yellow);
+      border: 1px solid rgba(250, 204, 21, 0.4);
       font-weight: 700;
       padding: 0.45rem 0.8rem;
       border-radius: 6px;
@@ -83,48 +118,62 @@
     }
 
     .nav-cta {
-      background: var(--primary);
-      color: #000;
+      background: var(--ryb-yellow);
+      color: #0b0c10;
       font-weight: 800;
       padding: 0.45rem 0.9rem;
       border-radius: 6px;
       text-decoration: none;
       font-size: 0.85rem;
+      transition: transform 0.15s ease;
     }
 
-    /* Hero */
+    .nav-cta:active {
+      transform: scale(0.96);
+    }
+
+    /* Hero Section */
     .hero {
       text-align: center;
       padding: 3.5rem 1.25rem 2.5rem;
-      max-width: 860px;
+      max-width: 880px;
       margin: 0 auto;
+      position: relative;
     }
 
     .badge {
-      display: inline-block;
-      background: #1e2026;
-      color: var(--primary);
-      padding: 0.35rem 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #161922;
+      color: var(--text);
+      padding: 0.4rem 1rem;
       border-radius: 50px;
       font-size: 0.78rem;
       font-weight: 700;
-      margin-bottom: 1rem;
-      border: 1px solid rgba(250, 204, 21, 0.25);
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--border);
     }
 
     h1 {
-      font-size: clamp(1.8rem, 4.5vw, 2.5rem);
-      line-height: 1.2;
+      font-size: clamp(1.85rem, 5vw, 2.6rem);
+      line-height: 1.22;
       margin-bottom: 1rem;
       font-weight: 900;
       color: #fff;
     }
 
+    .gradient-word {
+      background: var(--ryb-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     .hero p {
       color: var(--muted);
-      font-size: 1rem;
-      margin-bottom: 1.8rem;
-      max-width: 650px;
+      font-size: 1.02rem;
+      margin-bottom: 2rem;
+      max-width: 660px;
       margin-inline: auto;
     }
 
@@ -140,18 +189,30 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      padding: 0.8rem 1.3rem;
+      padding: 0.85rem 1.4rem;
       border-radius: 8px;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.92rem;
       cursor: pointer;
       border: none;
+      transition: transform 0.15s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.96);
     }
 
     .btn-primary {
-      background: var(--primary);
-      color: #000;
+      background: var(--ryb-yellow);
+      color: #0b0c10;
+      box-shadow: 0 4px 15px rgba(250, 204, 21, 0.25);
+    }
+
+    .btn-blue {
+      background: var(--ryb-blue);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
     }
 
     .btn-whatsapp {
@@ -159,13 +220,7 @@
       color: #fff;
     }
 
-    .btn-gallery {
-      background: #1f2229;
-      color: #fff;
-      border: 1px solid var(--border);
-    }
-
-    /* Stats Bar */
+    /* 3-Phase RYB Indicator Strip */
     .stats-bar {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -176,22 +231,31 @@
     }
 
     .stat-card {
-      background: #141519;
-      border: 1px solid var(--border);
+      background: #14161d;
       border-radius: 10px;
       padding: 12px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
+
+    .stat-card.r { border-top: 3px solid var(--ryb-red); border: 1px solid rgba(255, 51, 68, 0.25); border-top-width: 3px; }
+    .stat-card.y { border-top: 3px solid var(--ryb-yellow); border: 1px solid rgba(250, 204, 21, 0.25); border-top-width: 3px; }
+    .stat-card.b { border-top: 3px solid var(--ryb-blue); border: 1px solid rgba(37, 99, 235, 0.25); border-top-width: 3px; }
 
     .stat-card strong {
       display: block;
-      color: var(--primary);
       font-size: 1.15rem;
+      font-weight: 900;
     }
+    .stat-card.r strong { color: var(--ryb-red); }
+    .stat-card.y strong { color: var(--ryb-yellow); }
+    .stat-card.b strong { color: var(--ryb-blue-electric); }
 
     .stat-card span {
       color: var(--muted);
       font-size: 0.75rem;
+      font-weight: 600;
     }
 
     /* Services Grid */
@@ -207,39 +271,43 @@
     }
 
     .section-title h2 {
-      font-size: 1.75rem;
+      font-size: 1.8rem;
       margin-bottom: 0.4rem;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .section-title p {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 1.25rem;
+      gap: 1.3rem;
     }
 
     .card {
       background: var(--card-bg);
-      border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 1.2rem;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
       cursor: pointer;
       user-select: none;
       -webkit-user-select: none;
-      transition: border-color 0.2s ease, transform 0.2s ease;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      position: relative;
     }
 
-    .card:hover {
-      border-color: var(--primary);
-      transform: translateY(-3px);
-    }
+    /* Alternating Electric RYB Top Accents */
+    .card.card-r { border: 1px solid var(--border); border-top: 3px solid var(--ryb-red); }
+    .card.card-y { border: 1px solid var(--border); border-top: 3px solid var(--ryb-yellow); }
+    .card.card-b { border: 1px solid var(--border); border-top: 3px solid var(--ryb-blue); }
+
+    .card.card-r:hover { border-color: var(--ryb-red); transform: translateY(-4px); }
+    .card.card-y:hover { border-color: var(--ryb-yellow); transform: translateY(-4px); }
+    .card.card-b:hover { border-color: var(--ryb-blue); transform: translateY(-4px); }
 
     .img-wrapper {
       position: relative;
@@ -248,8 +316,8 @@
       border-radius: 10px;
       overflow: hidden;
       margin-bottom: 12px;
-      border: 1px solid #2e3038;
-      background: #101114;
+      border: 1px solid #222634;
+      background: #0d0e12;
     }
 
     .card-img {
@@ -257,21 +325,27 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-img {
+      transform: scale(1.04);
     }
 
     .gallery-badge {
       position: absolute;
       bottom: 8px;
       right: 8px;
-      background: rgba(15, 16, 18, 0.88);
-      color: var(--primary);
+      background: rgba(11, 12, 16, 0.9);
       padding: 4px 8px;
       border-radius: 6px;
       font-size: 0.72rem;
       font-weight: 700;
-      border: 1px solid rgba(250, 204, 21, 0.35);
       pointer-events: none;
     }
+    .card-r .gallery-badge { color: var(--ryb-red); border: 1px solid rgba(255, 51, 68, 0.4); }
+    .card-y .gallery-badge { color: var(--ryb-yellow); border: 1px solid rgba(250, 204, 21, 0.4); }
+    .card-b .gallery-badge { color: var(--ryb-blue-electric); border: 1px solid rgba(37, 99, 235, 0.4); }
 
     .card-header {
       display: flex;
@@ -287,12 +361,12 @@
     .card h3 {
       font-size: 1.15rem;
       color: #fff;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .card p {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       flex-grow: 1;
     }
 
@@ -304,13 +378,15 @@
       justify-content: space-between;
       align-items: center;
       font-size: 0.8rem;
-      color: var(--primary);
-      font-weight: 700;
+      font-weight: 800;
     }
+    .card-r .card-action { color: var(--ryb-red); }
+    .card-y .card-action { color: var(--ryb-yellow); }
+    .card-b .card-action { color: var(--ryb-blue-electric); }
 
     /* Trust Section */
     .trust {
-      background: #141519;
+      background: #11131a;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       padding: 2.5rem 1.25rem;
@@ -328,16 +404,19 @@
 
     .trust-box h4 {
       font-size: 1.05rem;
-      color: var(--primary);
       margin-bottom: 0.2rem;
+      font-weight: 800;
     }
+    .trust-box:nth-child(1) h4 { color: var(--ryb-red); }
+    .trust-box:nth-child(2) h4 { color: var(--ryb-yellow); }
+    .trust-box:nth-child(3) h4 { color: var(--ryb-blue-electric); }
 
     .trust-box p {
       color: var(--muted);
       font-size: 0.85rem;
     }
 
-    /* Contact Form */
+    /* Consultation Form */
     .form-section {
       background: var(--card-bg);
       padding: 24px 18px;
@@ -345,6 +424,7 @@
       margin: 2rem auto;
       max-width: 650px;
       border: 1px solid var(--border);
+      border-top: 3px solid var(--ryb-yellow);
     }
 
     .form-wrapper {
@@ -355,8 +435,8 @@
       width: 100%;
       padding: 11px;
       border-radius: 8px;
-      border: 1px solid #3f3f46;
-      background: #09090b;
+      border: 1px solid #333745;
+      background: #090a0d;
       color: #fff;
       margin-bottom: 12px;
       font-size: 0.92rem;
@@ -364,15 +444,15 @@
 
     .form-input:focus {
       outline: none;
-      border-color: var(--primary);
+      border-color: var(--ryb-yellow);
     }
 
-    /* Modal Gallery */
+    /* Gallery Modal */
     .gallery-modal {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(10, 10, 12, 0.96);
+      background: rgba(9, 10, 13, 0.97);
       z-index: 9999;
       flex-direction: column;
       padding: 16px;
@@ -398,13 +478,16 @@
     }
 
     .modal-header h3 {
-      color: var(--primary);
+      color: #fff;
       font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .modal-close {
-      background: var(--primary);
-      color: #000;
+      background: var(--ryb-red);
+      color: #fff;
       font-size: 18px;
       font-weight: 900;
       border: none;
@@ -416,7 +499,7 @@
 
     .filter-tabs {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       overflow-x: auto;
       padding: 10px 0 4px;
       scrollbar-width: none;
@@ -427,10 +510,10 @@
     }
 
     .filter-btn {
-      background: #1e2026;
+      background: #181b24;
       color: var(--muted);
       border: 1px solid var(--border);
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 50px;
       font-size: 0.78rem;
       font-weight: 700;
@@ -439,10 +522,13 @@
     }
 
     .filter-btn.active {
-      background: var(--primary);
-      color: #000;
-      border-color: var(--primary);
+      background: var(--ryb-yellow);
+      color: #0b0c10;
+      border-color: var(--ryb-yellow);
     }
+
+    .filter-btn.btn-r.active { background: var(--ryb-red); color: #fff; border-color: var(--ryb-red); }
+    .filter-btn.btn-b.active { background: var(--ryb-blue); color: #fff; border-color: var(--ryb-blue); }
 
     .gallery-grid {
       display: grid;
@@ -459,9 +545,9 @@
       border-radius: 8px;
       overflow: hidden;
       height: 145px;
-      border: 1px solid #32353e;
+      border: 1px solid #272c3d;
       cursor: pointer;
-      background: #16171b;
+      background: #12141c;
     }
 
     .gallery-item img {
@@ -474,7 +560,7 @@
       position: absolute;
       bottom: 0;
       inset-inline: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      background: linear-gradient(transparent, rgba(0,0,0,0.88));
       color: #fff;
       font-size: 0.7rem;
       padding: 12px 6px 6px;
@@ -486,7 +572,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.95);
+      background: rgba(0, 0, 0, 0.96);
       z-index: 10005;
       align-items: center;
       justify-content: center;
@@ -514,9 +600,9 @@
     }
 
     .lb-btn {
-      background: #23252c;
+      background: #1b1e28;
       color: #fff;
-      border: 1px solid #3f3f46;
+      border: 1px solid #323747;
       padding: 8px 16px;
       border-radius: 6px;
       font-weight: 700;
@@ -528,8 +614,8 @@
       position: absolute;
       top: 16px;
       right: 16px;
-      background: var(--primary);
-      color: #000;
+      background: var(--ryb-red);
+      color: #fff;
       width: 38px;
       height: 38px;
       border-radius: 50%;
@@ -540,8 +626,8 @@
     }
 
     .lb-counter {
-      color: var(--primary);
-      font-weight: 700;
+      color: var(--ryb-yellow);
+      font-weight: 800;
       font-size: 0.88rem;
     }
 
@@ -574,7 +660,7 @@
     }
 
     footer a {
-      color: var(--primary);
+      color: var(--ryb-yellow);
       text-decoration: none;
       font-weight: 600;
     }
@@ -590,9 +676,19 @@
 </head>
 <body>
 
+  <!-- Top 3-Phase Voltage Stripe -->
+  <div class="ryb-top-line"></div>
+
   <!-- Header -->
   <header>
-    <div class="logo">⚡ KARTIK <span>ELECTRICAL</span></div>
+    <a href="#" class="logo">
+      <div class="phase-dots">
+        <span class="phase-dot r" title="R Phase (Red)"></span>
+        <span class="phase-dot y" title="Y Phase (Yellow)"></span>
+        <span class="phase-dot b" title="B Phase (Blue)"></span>
+      </div>
+      ⚡ KARTIK <span>ELECTRICAL</span>
+    </a>
     <div class="nav-actions">
       <button type="button" id="installAppBtn" class="install-btn">📲 Install App</button>
       <a href="tel:+917275290736" class="nav-cta">📞 Call Now</a>
@@ -601,34 +697,41 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="badge">Industrial • Commercial • Residential</div>
-    <h1>Specialized Industrial Electrical & Lighting Solutions</h1>
+    <div class="badge">
+      <div class="phase-dots">
+        <span class="phase-dot r"></span>
+        <span class="phase-dot y"></span>
+        <span class="phase-dot b"></span>
+      </div>
+      R • Y • B Three-Phase Power • Industrial & Commercial
+    </div>
+    <h1>Specialized <span class="gradient-word">Industrial Electrical</span> & Lighting Solutions</h1>
     <p>Turnkey power distribution, certified chemical earthing installations, high-altitude aviation lighting, and heavy-duty industrial contracting across India.</p>
     
     <div class="btn-group">
       <a href="tel:+917275290736" class="btn btn-primary">📞 Call: 072752 90736</a>
       <a href="https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20I%20have%20an%20electrical/industrial%20inquiry." class="btn btn-whatsapp">💬 WhatsApp Us</a>
-      <button type="button" class="btn btn-gallery" onclick="openGallery('All Project Photos', 'all')">🖼️ View Project Gallery</button>
+      <button type="button" class="btn btn-blue" onclick="openGallery('All Project Photos', 'all')">🖼️ View Project Gallery</button>
     </div>
   </section>
 
-  <!-- Key Highlights Bar -->
+  <!-- RYB 3-Phase Highlights Bar -->
   <div class="stats-bar">
-    <div class="stat-card">
+    <div class="stat-card r">
+      <strong>R - Phase</strong>
+      <span>LT/HT Heavy Panels</span>
+    </div>
+    <div class="stat-card y">
+      <strong>Y - Phase</strong>
+      <span>Chemical Earthing Pit</span>
+    </div>
+    <div class="stat-card b">
+      <strong>B - Phase</strong>
+      <span>Aviation & Plant Lighting</span>
+    </div>
+    <div class="stat-card y">
       <strong>Pan-India</strong>
-      <span>Site Mobilization</span>
-    </div>
-    <div class="stat-card">
-      <strong>Certified</strong>
-      <span>Chemical Earthing</span>
-    </div>
-    <div class="stat-card">
-      <strong>LT / HT</strong>
-      <span>Panel Specialists</span>
-    </div>
-    <div class="stat-card">
-      <strong>24/7</strong>
-      <span>Emergency Support</span>
+      <span>Certified Compliance</span>
     </div>
   </div>
 
@@ -636,12 +739,12 @@
   <section class="services">
     <div class="section-title">
       <h2>Comprehensive Capabilities</h2>
-      <p>Tap any service card below to browse real project photos.</p>
+      <p>Tap any service card below to browse verified installation photos.</p>
     </div>
 
     <div class="grid">
-      <!-- Service 1: Earthing -->
-      <div class="card" data-category="earthing" data-title="Earthing & Grounding Systems">
+      <!-- Service 1: Earthing (Yellow Accent) -->
+      <div class="card card-y" data-category="earthing" data-title="Earthing & Grounding Systems">
         <div class="img-wrapper">
           <img src="1792820606285%20(2).png" alt="Chemical Earthing Installation" class="card-img" loading="lazy">
           <span class="gallery-badge">📷 Tap for Gallery</span>
@@ -657,8 +760,8 @@
         </div>
       </div>
 
-      <!-- Service 2: Aviation Lighting -->
-      <div class="card" data-category="lighting" data-title="Aviation Obstruction Lighting">
+      <!-- Service 2: Aviation Lighting (Red Accent) -->
+      <div class="card card-r" data-category="lighting" data-title="Aviation Obstruction Lighting">
         <div class="img-wrapper">
           <img src="1792820643926%20(1).png" alt="Aviation Obstruction Lighting" class="card-img" loading="lazy">
           <span class="gallery-badge">📷 Tap for Gallery</span>
@@ -674,8 +777,8 @@
         </div>
       </div>
 
-      <!-- Service 3: Industrial Electrical Work -->
-      <div class="card" data-category="wiring" data-title="Industrial Plant & Factory Work">
+      <!-- Service 3: Industrial Cable Trays (Blue Accent) -->
+      <div class="card card-b" data-category="wiring" data-title="Industrial Plant & Factory Work">
         <div class="img-wrapper">
           <img src="1792820625686%20(1).png" alt="Industrial Cable Tray Wiring" class="card-img" loading="lazy">
           <span class="gallery-badge">📷 Tap for Gallery</span>
@@ -691,8 +794,8 @@
         </div>
       </div>
 
-      <!-- Service 4: All Kinds of Lighting -->
-      <div class="card" data-category="lighting" data-title="All-Scale Lighting Installations">
+      <!-- Service 4: All-Scale Lighting (Yellow Accent) -->
+      <div class="card card-y" data-category="lighting" data-title="All-Scale Lighting Installations">
         <div class="img-wrapper">
           <img src="1792821005726%20(1).png" alt="Commercial Lighting Installation" class="card-img" loading="lazy">
           <span class="gallery-badge">📷 Tap for Gallery</span>
@@ -701,15 +804,15 @@
           <div class="card-icon">💡</div>
           <h3>All-Scale Lighting Installations</h3>
         </div>
-        <p>Comprehensive lighting design and fitting: high-bay warehouse lights, street & perimeter floodlights, commercial hall chandeliers, and architectural LEDs.</p>
+        <p>Comprehensive lighting design and fitting: high-bay warehouse lights, perimeter floodlights, commercial hall chandeliers, and architectural LEDs.</p>
         <div class="card-action">
           <span>View Lighting Photos</span>
           <span>➔</span>
         </div>
       </div>
 
-      <!-- Service 5: Switchgear & Panel Upgrades -->
-      <div class="card" data-category="panels" data-title="Switchgear & Panel Upgrades">
+      <!-- Service 5: Switchgear & Panels (Red Accent) -->
+      <div class="card card-r" data-category="panels" data-title="Switchgear & Panel Upgrades">
         <div class="img-wrapper">
           <img src="1792820963840%20(1).png" alt="Switchgear and Control Panel Upgrades" class="card-img" loading="lazy">
           <span class="gallery-badge">📷 Tap for Gallery</span>
@@ -725,8 +828,8 @@
         </div>
       </div>
 
-      <!-- Service 6: Turnkey Wiring & Emergency -->
-      <div class="card" data-category="panels" data-title="Turnkey Rewiring & Emergency Support">
+      <!-- Service 6: Turnkey Wiring & Emergency (Blue Accent) -->
+      <div class="card card-b" data-category="panels" data-title="Turnkey Rewiring & Emergency Support">
         <div class="img-wrapper">
           <img src="1792820985244%20(2).png" alt="Turnkey Rewiring and Emergency Support" class="card-img" loading="lazy">
           <span class="gallery-badge">📷 Tap for Gallery</span>
@@ -765,7 +868,7 @@
   <!-- Lead Capture Form -->
   <div class="form-wrapper">
     <section id="contact-form" class="form-section">
-      <h3 style="color:#facc15; font-size:20px; margin-bottom:6px;">Request a Service Consultation</h3>
+      <h3 style="color:var(--ryb-yellow); font-size:20px; margin-bottom:6px;">Request a Service Consultation</h3>
       <p style="color:#a1a1aa; font-size:14px; margin-bottom:16px;">Direct triage for chemical earthing tests, aviation lights, and industrial panel works.</p>
       
       <form action="https://api.web3forms.com/submit" method="POST">
@@ -789,7 +892,7 @@
         <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Site Location / Details</label>
         <textarea name="location" rows="2" placeholder="City, locality, building type, or project requirement" class="form-input"></textarea>
 
-        <button type="submit" style="width:100%; padding:12px; border-radius:8px; border:none; background:#facc15; color:#09090b; font-weight:800; font-size:15px; cursor:pointer;">
+        <button type="submit" style="width:100%; padding:12px; border-radius:8px; border:none; background:var(--ryb-yellow); color:#09090b; font-weight:800; font-size:15px; cursor:pointer;">
           Submit Enquiry
         </button>
       </form>
@@ -800,15 +903,22 @@
   <div id="galleryModal" class="gallery-modal">
     <div class="modal-top">
       <div class="modal-header">
-        <h3 id="galleryTitle">Project Photos</h3>
+        <h3>
+          <div class="phase-dots">
+            <span class="phase-dot r"></span>
+            <span class="phase-dot y"></span>
+            <span class="phase-dot b"></span>
+          </div>
+          <span id="galleryTitle">Project Photos</span>
+        </h3>
         <button type="button" class="modal-close" onclick="closeGallery()">✕</button>
       </div>
       <div class="filter-tabs">
         <button type="button" class="filter-btn active" onclick="filterGallery('all', this)">All Photos</button>
-        <button type="button" class="filter-btn" onclick="filterGallery('panels', this)">⚡ Panels & Switchgear</button>
-        <button type="button" class="filter-btn" onclick="filterGallery('earthing', this)">⏚ Earthing</button>
-        <button type="button" class="filter-btn" onclick="filterGallery('wiring', this)">🏭 Cable Trays & Substations</button>
-        <button type="button" class="filter-btn" onclick="filterGallery('lighting', this)">💡 Aviation & Lighting</button>
+        <button type="button" class="filter-btn btn-r" onclick="filterGallery('panels', this)">⚡ Panels & Switchgear</button>
+        <button type="button" class="filter-btn btn-y" onclick="filterGallery('earthing', this)">⏚ Earthing</button>
+        <button type="button" class="filter-btn btn-b" onclick="filterGallery('wiring', this)">🏭 Cable Trays & Substations</button>
+        <button type="button" class="filter-btn btn-y" onclick="filterGallery('lighting', this)">💡 Aviation & Lighting</button>
       </div>
     </div>
     <div id="galleryGrid" class="gallery-grid"></div>
@@ -958,7 +1068,7 @@
       }
     };
 
-    // 4. Card Click & Touch Handler
+    // 4. Attach Click Events to Cards
     document.addEventListener('DOMContentLoaded', function() {
       const cards = document.querySelectorAll('.card');
       cards.forEach(function(card) {
@@ -972,4 +1082,3 @@
   </script>
 </body>
 </html>
-
