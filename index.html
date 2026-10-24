@@ -42,7 +42,7 @@
       overflow-x: hidden;
     }
 
-    /* 3-Phase RYB Voltage Stripe on Top */
+    /* 3-Phase RYB Voltage Stripe */
     .ryb-top-line {
       height: 4px;
       width: 100%;
@@ -220,7 +220,7 @@
       color: #fff;
     }
 
-    /* 3-Phase RYB Indicator Strip */
+    /* 3-Phase RYB Highlights Bar */
     .stats-bar {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -235,13 +235,12 @@
       border-radius: 10px;
       padding: 12px;
       text-align: center;
-      position: relative;
       overflow: hidden;
     }
 
-    .stat-card.r { border-top: 3px solid var(--ryb-red); border: 1px solid rgba(255, 51, 68, 0.25); border-top-width: 3px; }
-    .stat-card.y { border-top: 3px solid var(--ryb-yellow); border: 1px solid rgba(250, 204, 21, 0.25); border-top-width: 3px; }
-    .stat-card.b { border-top: 3px solid var(--ryb-blue); border: 1px solid rgba(37, 99, 235, 0.25); border-top-width: 3px; }
+    .stat-card.r { border: 1px solid rgba(255, 51, 68, 0.25); border-top: 3px solid var(--ryb-red); }
+    .stat-card.y { border: 1px solid rgba(250, 204, 21, 0.25); border-top: 3px solid var(--ryb-yellow); }
+    .stat-card.b { border: 1px solid rgba(37, 99, 235, 0.25); border-top: 3px solid var(--ryb-blue); }
 
     .stat-card strong {
       display: block;
@@ -300,7 +299,6 @@
       position: relative;
     }
 
-    /* Alternating Electric RYB Top Accents */
     .card.card-r { border: 1px solid var(--border); border-top: 3px solid var(--ryb-red); }
     .card.card-y { border: 1px solid var(--border); border-top: 3px solid var(--ryb-yellow); }
     .card.card-b { border: 1px solid var(--border); border-top: 3px solid var(--ryb-blue); }
@@ -567,7 +565,7 @@
       font-weight: 600;
     }
 
-    /* Lightbox */
+    /* Fullscreen Lightbox */
     .lightbox {
       display: none;
       position: fixed;
@@ -631,23 +629,215 @@
       font-size: 0.88rem;
     }
 
-    /* Floating WhatsApp */
-    .floating-wa {
+    /* Floating Action Dock (AI Chat + WhatsApp) */
+    .action-dock {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25d366;
-      color: #fff;
+      bottom: 18px;
+      right: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 9000;
+    }
+
+    .dock-btn {
       width: 52px;
       height: 52px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 22px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
       text-decoration: none;
+      transition: transform 0.15s ease;
+    }
+
+    .dock-btn:active {
+      transform: scale(0.92);
+    }
+
+    .dock-ai {
+      background: #1b1e29;
+      color: var(--ryb-yellow);
+      border: 2px solid var(--ryb-yellow);
+      box-shadow: 0 4px 16px rgba(250, 204, 21, 0.35);
+    }
+
+    .dock-wa {
+      background: #25d366;
+      color: #fff;
       box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
-      z-index: 90;
+    }
+
+    /* Built-In Electric AI Chat Window */
+    .chat-widget {
+      display: none;
+      position: fixed;
+      bottom: 80px;
+      right: 18px;
+      width: min(360px, calc(100vw - 36px));
+      height: 480px;
+      background: #12141c;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--ryb-yellow);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9005;
+    }
+
+    .chat-widget.active {
+      display: flex;
+    }
+
+    .chat-header {
+      background: #181b26;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chat-header-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chat-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e;
+    }
+
+    .chat-close-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .chat-msg {
+      max-width: 84%;
+      padding: 9px 12px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      line-height: 1.45;
+    }
+
+    .chat-msg.bot {
+      align-self: flex-start;
+      background: #1a1e2b;
+      color: #f3f4f6;
+      border: 1px solid #282e42;
+      border-bottom-left-radius: 2px;
+    }
+
+    .chat-msg.user {
+      align-self: flex-end;
+      background: var(--ryb-blue);
+      color: #fff;
+      border-bottom-right-radius: 2px;
+    }
+
+    .chat-chips {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 6px 12px;
+      background: #151822;
+      border-top: 1px solid var(--border);
+      scrollbar-width: none;
+    }
+
+    .chat-chips::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chat-chip {
+      background: #1f2433;
+      color: var(--ryb-yellow);
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .chat-chip:active {
+      background: var(--ryb-yellow);
+      color: #0b0c10;
+    }
+
+    .chat-input-bar {
+      display: flex;
+      padding: 8px 10px;
+      background: #161924;
+      border-top: 1px solid var(--border);
+      gap: 6px;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #2d3345;
+      background: #0d0f15;
+      color: #fff;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .chat-send-btn {
+      background: var(--ryb-yellow);
+      color: #0b0c10;
+      border: none;
+      padding: 0 14px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .chat-action-btn {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 10px;
+      background: #25d366;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.75rem;
+      border-radius: 6px;
+      text-decoration: none;
     }
 
     /* Footer */
@@ -743,7 +933,7 @@
     </div>
 
     <div class="grid">
-      <!-- Service 1: Earthing (Yellow Accent) -->
+      <!-- Service 1: Earthing -->
       <div class="card card-y" data-category="earthing" data-title="Earthing & Grounding Systems">
         <div class="img-wrapper">
           <img src="1792820606285%20(2).png" alt="Chemical Earthing Installation" class="card-img" loading="lazy">
@@ -760,7 +950,7 @@
         </div>
       </div>
 
-      <!-- Service 2: Aviation Lighting (Red Accent) -->
+      <!-- Service 2: Aviation Lighting -->
       <div class="card card-r" data-category="lighting" data-title="Aviation Obstruction Lighting">
         <div class="img-wrapper">
           <img src="1792820643926%20(1).png" alt="Aviation Obstruction Lighting" class="card-img" loading="lazy">
@@ -777,7 +967,7 @@
         </div>
       </div>
 
-      <!-- Service 3: Industrial Cable Trays (Blue Accent) -->
+      <!-- Service 3: Industrial Cable Trays -->
       <div class="card card-b" data-category="wiring" data-title="Industrial Plant & Factory Work">
         <div class="img-wrapper">
           <img src="1792820625686%20(1).png" alt="Industrial Cable Tray Wiring" class="card-img" loading="lazy">
@@ -794,7 +984,7 @@
         </div>
       </div>
 
-      <!-- Service 4: All-Scale Lighting (Yellow Accent) -->
+      <!-- Service 4: All-Scale Lighting -->
       <div class="card card-y" data-category="lighting" data-title="All-Scale Lighting Installations">
         <div class="img-wrapper">
           <img src="1792821005726%20(1).png" alt="Commercial Lighting Installation" class="card-img" loading="lazy">
@@ -811,7 +1001,7 @@
         </div>
       </div>
 
-      <!-- Service 5: Switchgear & Panels (Red Accent) -->
+      <!-- Service 5: Switchgear & Panels -->
       <div class="card card-r" data-category="panels" data-title="Switchgear & Panel Upgrades">
         <div class="img-wrapper">
           <img src="1792820963840%20(1).png" alt="Switchgear and Control Panel Upgrades" class="card-img" loading="lazy">
@@ -828,7 +1018,7 @@
         </div>
       </div>
 
-      <!-- Service 6: Turnkey Wiring & Emergency (Blue Accent) -->
+      <!-- Service 6: Turnkey Wiring & Emergency -->
       <div class="card card-b" data-category="panels" data-title="Turnkey Rewiring & Emergency Support">
         <div class="img-wrapper">
           <img src="1792820985244%20(2).png" alt="Turnkey Rewiring and Emergency Support" class="card-img" loading="lazy">
@@ -935,8 +1125,47 @@
     </div>
   </div>
 
-  <!-- Floating WhatsApp -->
-  <a href="https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20I%20want%20to%20discuss%20an%20electrical%20project." class="floating-wa" aria-label="Chat on WhatsApp">💬</a>
+  <!-- Floating Action Dock -->
+  <div class="action-dock">
+    <button type="button" class="dock-btn dock-ai" onclick="toggleAIChat()" title="Chat with AI Assistant">⚡</button>
+    <a href="https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20I%20want%20to%20discuss%20an%20electrical%20project." class="dock-btn dock-wa" aria-label="Chat on WhatsApp">💬</a>
+  </div>
+
+  <!-- Built-In Electric AI Chat Window -->
+  <div id="chatWidget" class="chat-widget">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <span class="status-dot"></span>
+        <div class="chat-title">
+          ⚡ Kartik AI Assistant
+          <div class="phase-dots">
+            <span class="phase-dot r"></span>
+            <span class="phase-dot y"></span>
+            <span class="phase-dot b"></span>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="chat-close-btn" onclick="toggleAIChat()">✕</button>
+    </div>
+    
+    <div id="chatMessages" class="chat-messages">
+      <div class="chat-msg bot">
+        Hello! I am the Kartik Electrical AI Assistant. How can I assist you with your project today?
+      </div>
+    </div>
+
+    <div class="chat-chips">
+      <button type="button" class="chat-chip" onclick="quickAsk('Chemical Earthing')">⏚ Earthing</button>
+      <button type="button" class="chat-chip" onclick="quickAsk('Aviation Lighting')">🗼 Aviation Lights</button>
+      <button type="button" class="chat-chip" onclick="quickAsk('LT HT Panels')">⚡ Control Panels</button>
+      <button type="button" class="chat-chip" onclick="quickAsk('Request Quotation')">📄 Get Quote</button>
+    </div>
+
+    <div class="chat-input-bar">
+      <input type="text" id="chatInput" class="chat-input" placeholder="Ask a question..." onkeydown="handleChatKey(event)">
+      <button type="button" class="chat-send-btn" onclick="sendChatMessage()">➤</button>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
@@ -947,16 +1176,16 @@
     </div>
   </footer>
 
-  <!-- Script Section -->
+  <!-- Scripts -->
   <script>
-    // 1. Service Worker Registration & Cache Refresh
+    // 1. Service Worker Update
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/kartik-electrical/sw.js').then(function(reg) {
         reg.update();
       }).catch(function(){});
     }
 
-    // 2. PWA Install Prompt Handler
+    // 2. Install App Handler
     let deferredPrompt;
     const installBtn = document.getElementById('installAppBtn');
     window.addEventListener('beforeinstallprompt', function(e) {
@@ -975,7 +1204,7 @@
       });
     }
 
-    // 3. Project Photos Array
+    // 3. Project Gallery Data
     const projectGallery = [
       { src: "1792820606285%20(2).png", category: "earthing", label: "Copper Chemical Earthing Pit" },
       { src: "1792820643926%20(1).png", category: "lighting", label: "Aviation Obstruction Beacon" },
@@ -1068,7 +1297,7 @@
       }
     };
 
-    // 4. Attach Click Events to Cards
+    // 4. Card Click Handlers
     document.addEventListener('DOMContentLoaded', function() {
       const cards = document.querySelectorAll('.card');
       cards.forEach(function(card) {
@@ -1079,6 +1308,73 @@
         });
       });
     });
+
+    // 5. Built-in AI Chat Logic
+    function toggleAIChat() {
+      const widget = document.getElementById('chatWidget');
+      widget.classList.toggle('active');
+      if (widget.classList.contains('active')) {
+        document.getElementById('chatInput').focus();
+      }
+    }
+
+    function handleChatKey(e) {
+      if (e.key === 'Enter') {
+        sendChatMessage();
+      }
+    }
+
+    function quickAsk(text) {
+      document.getElementById('chatInput').value = text;
+      sendChatMessage();
+    }
+
+    function getAIResponse(query) {
+      const q = query.toLowerCase();
+
+      if (q.includes('earth') || q.includes('ground') || q.includes('pit')) {
+        return "We execute complete chemical earthing, copper bonded & GI electrode installations, and precision earth resistance testing complying with Indian IS 3043 safety standards.<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi,%20I%20need%20chemical%20earthing%20services.' target='_blank'>Book Earthing Test</a>";
+      }
+      if (q.includes('aviation') || q.includes('light') || q.includes('tower') || q.includes('beacon')) {
+        return "We install and maintain certified low, medium, and high-intensity LED aviation warning obstruction lights for telecom towers, chimneys, and high-rise commercial structures.<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi,%20I%20need%20aviation%20obstruction%20lighting.' target='_blank'>Inquire Aviation Lights</a>";
+      }
+      if (q.includes('panel') || q.includes('switchgear') || q.includes('mcb') || q.includes('lt') || q.includes('ht') || q.includes('vfd')) {
+        return "We handle LT/HT distribution panels, motor control centers (MCC), capacitor banks, copper busbar alignments, and fast breakdown repairs for industrial factories.<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi,%20I%20have%20an%20industrial%20panel%20inquiry.' target='_blank'>Discuss Panel Requirements</a>";
+      }
+      if (q.includes('price') || q.includes('cost') || q.includes('rate') || q.includes('quote') || q.includes('quotation')) {
+        return "Quotations depend on site scope and specifications. You can submit the form on this page or message us directly on WhatsApp with your Bill of Quantities (BOQ).<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20please%20share%20a%20project%20quote.' target='_blank'>Get Quick Quote</a>";
+      }
+      if (q.includes('contact') || q.includes('number') || q.includes('phone') || q.includes('call') || q.includes('address') || q.includes('location')) {
+        return "You can call us directly at <strong>072752 90736</strong> or email <strong>kartikelectrical1080@gmail.com</strong>. We mobilize teams across India.<br><a class='chat-action-btn' href='tel:+917275290736'>📞 Call Now</a>";
+      }
+      return "Thank you for reaching out! Kartik Electrical provides turnkey industrial power, chemical earthing, and aviation lighting solutions. Speak directly with our lead contractor here:<br><a class='chat-action-btn' href='https://wa.me/917275290736?text=" + encodeURIComponent("Hi Kartik Electrical, I have a project inquiry regarding: " + query) + "' target='_blank'>💬 Chat on WhatsApp</a>";
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const container = document.getElementById('chatMessages');
+
+      // User Message
+      const userDiv = document.createElement('div');
+      userDiv.className = 'chat-msg user';
+      userDiv.innerText = text;
+      container.appendChild(userDiv);
+      input.value = '';
+
+      container.scrollTop = container.scrollHeight;
+
+      // Bot Response
+      setTimeout(function() {
+        const botDiv = document.createElement('div');
+        botDiv.className = 'chat-msg bot';
+        botDiv.innerHTML = getAIResponse(text);
+        container.appendChild(botDiv);
+        container.scrollTop = container.scrollHeight;
+      }, 400);
+    }
   </script>
 </body>
 </html>
