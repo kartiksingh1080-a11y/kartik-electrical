@@ -17,7 +17,56 @@
       --border: #2e3036;
     }
 
-    * {
+    * {.gallery-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 99999;
+  flex-direction: column;
+  padding: 16px;
+  overflow-y: auto;
+}
+.gallery-modal.active {
+  display: flex;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #2e3036;
+}
+.modal-header h3 {
+  color: #facc15;
+  font-size: 18px;
+  margin: 0;
+}
+.modal-close {
+  background: #facc15;
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+.gallery-grid img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #3f3f46;
+}
+       
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -376,7 +425,51 @@
       Submit Enquiry
     </button>
   </form>
-</section>
+</section><!-- Gallery Popup Modal -->
+<div id="galleryModal" class="gallery-modal">
+  <div class="modal-header">
+    <h3 id="galleryTitle">Project Photos</h3>
+    <button type="button" class="modal-close" onclick="closeGallery()">✕</button>const projectGallery = [
+  "1792820584675%20(1).png",
+  "1792820606285%20(2).png",
+  "1792820625686%20(1).png",
+  "1792820643926%20(1).png",
+  "1792820963840%20(1).png",
+  "1792820985244%20(2).png",
+  "1792821005726%20(1).png"
+];
+
+function openGallery(title) {
+  const modal = document.getElementById('galleryModal');
+  const titleEl = document.getElementById('galleryTitle');
+  const grid = document.getElementById('galleryGrid');
+  
+  titleEl.innerText = title || "Project Gallery";
+  grid.innerHTML = projectGallery.map(img => 
+    `<img src="${img}" alt="Project Photo" onclick="window.open('${img}', '_blank')">`
+  ).join('');
+  
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGallery() {
+  document.getElementById('galleryModal').classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+document.querySelectorAll('.card img').forEach(img => {
+  img.style.cursor = 'pointer';
+  img.onclick = () => {
+    const title = img.closest('.card')?.querySelector('h3')?.innerText || "Project Gallery";
+    openGallery(title);
+  };
+});
+    
+  </div>
+  <div id="galleryGrid" class="gallery-grid"></div>
+</div>
+  
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/kartik-electrical/sw.js');
