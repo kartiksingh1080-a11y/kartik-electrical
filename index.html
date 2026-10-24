@@ -1,1 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#121214" />
+  <link rel="manifest" href="./manifest.json">
+  <title>Kartik Electrical | Industrial, Earthing & Lighting Specialists</title>
+  <style>
+    :root {
+      --bg: #0f1012;
+      --card-bg: #18191d;
+      --card-hover: #21232a;
+      --primary: #facc15;
+      --primary-hover: #eab308;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --border: #2a2c33;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 16, 18, 0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 0.85rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 1.15rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .install-btn {
+      display: none;
+      background: #252830;
+      color: var(--primary);
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      font-weight: 700;
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .nav-cta {
+      background: var(--primary);
+      color: #000;
+      font-weight: 800;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 3.5rem 1.25rem 2.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #1e2026;
+      color: var(--primary);
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(250, 204, 21, 0.25);
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 1.8rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0.8rem 1.3rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #000;
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: #fff;
+    }
+
+    .btn-gallery {
+      background: #1f2229;
+      color: #fff;
+      border: 1px solid var(--border);
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      max-width: 1000px;
+      margin: 0 auto 1.5rem;
+      padding: 0 1.25rem;
+    }
+
+    .stat-card {
+      background: #141519;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-card strong {
+      display: block;
+      color: var(--primary);
+      font-size: 1.15rem;
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    /* Services Grid */
+    .services {
+      padding: 2.5rem 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-title h2 {
+      font-size: 1.75rem;
+      margin-bottom: 0.4rem;
+      font-weight: 800;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .img-wrapper {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      border: 1px solid #2e3038;
+      background: #101114;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(15, 16, 18, 0.88);
+      color: var(--primary);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      pointer-events: none;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-icon {
+      font-size: 1.4rem;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      flex-grow: 1;
+    }
+
+    .card-action {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Trust Section */
+    .trust {
+      background: #141519;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 1.25rem;
+      text-align: center;
+    }
+
+    .trust-items {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .trust-box h4 {
+      font-size: 1.05rem;
+      color: var(--primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .trust-box p {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* Contact Form */
+    .form-section {
+      background: var(--card-bg);
+      padding: 24px 18px;
+      border-radius: 14px;
+      margin: 2rem auto;
+      max-width: 650px;
+      border: 1px solid var(--border);
+    }
+
+    .form-wrapper {
+      padding: 0 12px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 11px;
+      border-radius: 8px;
+      border: 1px solid #3f3f46;
+      background: #09090b;
+      color: #fff;
+      margin-bottom: 12px;
+      font-size: 0.92rem;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* Modal Gallery */
+    .gallery-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 12, 0.96);
+      z-index: 9999;
+      flex-direction: column;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .gallery-modal.active {
+      display: flex;
+    }
+
+    .modal-top {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto 12px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-header h3 {
+      color: var(--primary);
+      font-size: 1.15rem;
+    }
+
+    .modal-close {
+      background: var(--primary);
+      color: #000;
+      font-size: 18px;
+      font-weight: 900;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 10px 0 4px;
+      scrollbar-width: none;
+    }
+
+    .filter-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      background: #1e2026;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #000;
+      border-color: var(--primary);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      padding-bottom: 30px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 145px;
+      border: 1px solid #32353e;
+      cursor: pointer;
+      background: #16171b;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      inset-inline: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 12px 6px 6px;
+      font-weight: 600;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 10005;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 16px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-img {
+      max-width: 95%;
+      max-height: 75vh;
+      border-radius: 8px;
+      object-fit: contain;
+      border: 1px solid #333;
+    }
+
+    .lightbox-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .lb-btn {
+      background: #23252c;
+      color: #fff;
+      border: 1px solid #3f3f46;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--primary);
+      color: #000;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      font-size: 18px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .lb-counter {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    /* Floating WhatsApp */
+    .floating-wa {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: #fff;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+      z-index: 90;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2.5rem 1.25rem 5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-line {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">⚡ KARTIK <span>ELECTRICAL</span></div>
+    <div class="nav-actions">
+      <button type="button" id="installAppBtn" class="install-btn">📲 Install App</button>
+      <a href="tel:+917275290736" class="nav-cta">📞 Call Now</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="badge">Industrial • Commercial • Residential</div>
+    <h1>Specialized Industrial Electrical & Lighting Solutions</h1>
+    <p>Turnkey power distribution, certified chemical earthing installations, high-altitude aviation lighting, and heavy-duty industrial contracting across India.</p>
+    
+    <div class="btn-group">
+      <a href="tel:+917275290736" class="btn btn-primary">📞 Call: 072752 90736</a>
+      <a href="https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20I%20have%20an%20electrical/industrial%20inquiry." class="btn btn-whatsapp">💬 WhatsApp Us</a>
+      <button type="button" class="btn btn-gallery" onclick="openGallery('All Project Photos', 'all')">🖼️ View Project Gallery</button>
+    </div>
+  </section>
+
+  <!-- Key Highlights Bar -->
+  <div class="stats-bar">
+    <div class="stat-card">
+      <strong>Pan-India</strong>
+      <span>Site Mobilization</span>
+    </div>
+    <div class="stat-card">
+      <strong>Certified</strong>
+      <span>Chemical Earthing</span>
+    </div>
+    <div class="stat-card">
+      <strong>LT / HT</strong>
+      <span>Panel Specialists</span>
+    </div>
+    <div class="stat-card">
+      <strong>24/7</strong>
+      <span>Emergency Support</span>
+    </div>
+  </div>
+
+  <!-- Services Grid -->
+  <section class="services">
+    <div class="section-title">
+      <h2>Comprehensive Capabilities</h2>
+      <p>Tap any service card below to browse real project photos.</p>
+    </div>
+
+    <div class="grid">
+      <!-- Service 1: Earthing -->
+      <div class="card" data-category="earthing" data-title="Earthing & Grounding Systems">
+        <div class="img-wrapper">
+          <img src="1792820606285%20(2).png" alt="Chemical Earthing Installation" class="card-img" loading="lazy">
+          <span class="gallery-badge">📷 Tap for Gallery</span>
+        </div>
+        <div class="card-header">
+          <div class="card-icon">⏚</div>
+          <h3>Earthing & Grounding Systems</h3>
+        </div>
+        <p>Complete chemical earthing, copper & GI plate/rod installations, earth pit testing, and surge protection for sensitive industrial equipment and buildings.</p>
+        <div class="card-action">
+          <span>View Earthing Photos</span>
+          <span>➔</span>
+        </div>
+      </div>
+
+      <!-- Service 2: Aviation Lighting -->
+      <div class="card" data-category="lighting" data-title="Aviation Obstruction Lighting">
+        <div class="img-wrapper">
+          <img src="1792820643926%20(1).png" alt="Aviation Obstruction Lighting" class="card-img" loading="lazy">
+          <span class="gallery-badge">📷 Tap for Gallery</span>
+        </div>
+        <div class="card-header">
+          <div class="card-icon">🗼</div>
+          <h3>Aviation Obstruction Lighting</h3>
+        </div>
+        <p>Supply, wiring, and maintenance of certified aviation warning beacon lights (low, medium, and high intensity) for telecom towers, high-rises, and chimneys.</p>
+        <div class="card-action">
+          <span>View Lighting Photos</span>
+          <span>➔</span>
+        </div>
+      </div>
+
+      <!-- Service 3: Industrial Electrical Work -->
+      <div class="card" data-category="wiring" data-title="Industrial Plant & Factory Work">
+        <div class="img-wrapper">
+          <img src="1792820625686%20(1).png" alt="Industrial Cable Tray Wiring" class="card-img" loading="lazy">
+          <span class="gallery-badge">📷 Tap for Gallery</span>
+        </div>
+        <div class="card-header">
+          <div class="card-icon">🏭</div>
+          <h3>Industrial Plant & Factory Work</h3>
+        </div>
+        <p>LT/HT panel installations, overhead cable tray layout, heavy motor connections, bus ducting, load balancing, and breakdown maintenance.</p>
+        <div class="card-action">
+          <span>View Industrial Photos</span>
+          <span>➔</span>
+        </div>
+      </div>
+
+      <!-- Service 4: All Kinds of Lighting -->
+      <div class="card" data-category="lighting" data-title="All-Scale Lighting Installations">
+        <div class="img-wrapper">
+          <img src="1792821005726%20(1).png" alt="Commercial Lighting Installation" class="card-img" loading="lazy">
+          <span class="gallery-badge">📷 Tap for Gallery</span>
+        </div>
+        <div class="card-header">
+          <div class="card-icon">💡</div>
+          <h3>All-Scale Lighting Installations</h3>
+        </div>
+        <p>Comprehensive lighting design and fitting: high-bay warehouse lights, street & perimeter floodlights, commercial hall chandeliers, and architectural LEDs.</p>
+        <div class="card-action">
+          <span>View Lighting Photos</span>
+          <span>➔</span>
+        </div>
+      </div>
+
+      <!-- Service 5: Switchgear & Panel Upgrades -->
+      <div class="card" data-category="panels" data-title="Switchgear & Panel Upgrades">
+        <div class="img-wrapper">
+          <img src="1792820963840%20(1).png" alt="Switchgear and Control Panel Upgrades" class="card-img" loading="lazy">
+          <span class="gallery-badge">📷 Tap for Gallery</span>
+        </div>
+        <div class="card-header">
+          <div class="card-icon">⚡</div>
+          <h3>Switchgear & Panel Upgrades</h3>
+        </div>
+        <p>Distribution boards, circuit breaker overhauls, copper busbar repairs, VFD motor panels, capacitor banks, and short-circuit troubleshooting.</p>
+        <div class="card-action">
+          <span>View Panel Photos</span>
+          <span>➔</span>
+        </div>
+      </div>
+
+      <!-- Service 6: Turnkey Wiring & Emergency -->
+      <div class="card" data-category="panels" data-title="Turnkey Rewiring & Emergency Support">
+        <div class="img-wrapper">
+          <img src="1792820985244%20(2).png" alt="Turnkey Rewiring and Emergency Support" class="card-img" loading="lazy">
+          <span class="gallery-badge">📷 Tap for Gallery</span>
+        </div>
+        <div class="card-header">
+          <div class="card-icon">🚨</div>
+          <h3>Turnkey Rewiring & Emergency Support</h3>
+        </div>
+        <p>Concealed and armored cable runs for large commercial properties, emergency power failure resolution, and routine electrical safety audits.</p>
+        <div class="card-action">
+          <span>View Project Photos</span>
+          <span>➔</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <section class="trust">
+    <div class="trust-items">
+      <div class="trust-box">
+        <h4>Industrial Safety Compliance</h4>
+        <p>Adherence to Indian electrical codes & standards</p>
+      </div>
+      <div class="trust-box">
+        <h4>Certified Earthing</h4>
+        <p>Verified low earth resistance values</p>
+      </div>
+      <div class="trust-box">
+        <h4>Rapid Mobilization</h4>
+        <p>Experienced team ready for industrial & commercial sites</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lead Capture Form -->
+  <div class="form-wrapper">
+    <section id="contact-form" class="form-section">
+      <h3 style="color:#facc15; font-size:20px; margin-bottom:6px;">Request a Service Consultation</h3>
+      <p style="color:#a1a1aa; font-size:14px; margin-bottom:16px;">Direct triage for chemical earthing tests, aviation lights, and industrial panel works.</p>
+      
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="6b268f35-f1e1-4dbd-bfc7-378f8b7734b7">
+        <input type="hidden" name="subject" value="New Service Lead - Kartik Electrical">
+
+        <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Full Name *</label>
+        <input type="text" name="name" required placeholder="Your Name or Company Name" class="form-input">
+
+        <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Phone Number *</label>
+        <input type="tel" name="phone" required placeholder="10-digit mobile number" class="form-input">
+
+        <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Service Needed *</label>
+        <select name="service" class="form-input">
+          <option value="Chemical Earthing & Testing">Chemical Earthing & Testing</option>
+          <option value="Aviation Obstruction Lighting">Aviation Obstruction Lighting</option>
+          <option value="Industrial Fault / Panel Breakdown">Industrial Fault / Panel Breakdown</option>
+          <option value="General Commercial & Hall Lighting">General Commercial & Hall Lighting</option>
+        </select>
+
+        <label style="display:block; font-size:13px; margin-bottom:4px; color:#e4e4e7;">Site Location / Details</label>
+        <textarea name="location" rows="2" placeholder="City, locality, building type, or project requirement" class="form-input"></textarea>
+
+        <button type="submit" style="width:100%; padding:12px; border-radius:8px; border:none; background:#facc15; color:#09090b; font-weight:800; font-size:15px; cursor:pointer;">
+          Submit Enquiry
+        </button>
+      </form>
+    </section>
+  </div>
+
+  <!-- Full Gallery Modal -->
+  <div id="galleryModal" class="gallery-modal">
+    <div class="modal-top">
+      <div class="modal-header">
+        <h3 id="galleryTitle">Project Photos</h3>
+        <button type="button" class="modal-close" onclick="closeGallery()">✕</button>
+      </div>
+      <div class="filter-tabs">
+        <button type="button" class="filter-btn active" onclick="filterGallery('all', this)">All Photos</button>
+        <button type="button" class="filter-btn" onclick="filterGallery('panels', this)">⚡ Panels & Switchgear</button>
+        <button type="button" class="filter-btn" onclick="filterGallery('earthing', this)">⏚ Earthing</button>
+        <button type="button" class="filter-btn" onclick="filterGallery('wiring', this)">🏭 Cable Trays & Substations</button>
+        <button type="button" class="filter-btn" onclick="filterGallery('lighting', this)">💡 Aviation & Lighting</button>
+      </div>
+    </div>
+    <div id="galleryGrid" class="gallery-grid"></div>
+  </div>
+
+  <!-- Fullscreen Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <button type="button" class="lb-close" onclick="closeLightbox()">✕</button>
+    <img id="lightboxImg" class="lightbox-img" src="" alt="Full View">
+    <div class="lightbox-controls">
+      <button type="button" class="lb-btn" onclick="changeSlide(-1)">❮ Prev</button>
+      <span id="lbCounter" class="lb-counter">1 / 7</span>
+      <button type="button" class="lb-btn" onclick="changeSlide(1)">Next ❯</button>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/917275290736?text=Hi%20Kartik%20Electrical,%20I%20want%20to%20discuss%20an%20electrical%20project." class="floating-wa" aria-label="Chat on WhatsApp">💬</a>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Kartik Electrical. All rights reserved.</p>
+    <div class="contact-line">
+      <a href="tel:+917275290736">📞 072752 90736</a>
+      <a href="mailto:kartikelectrical1080@gmail.com">✉️ kartikelectrical1080@gmail.com</a>
+    </div>
+  </footer>
+
+  <!-- Script Section -->
+  <script>
+    // 1. Service Worker Registration & Cache Refresh
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/kartik-electrical/sw.js').then(function(reg) {
+        reg.update();
+      }).catch(function(){});
+    }
+
+    // 2. PWA Install Prompt Handler
+    let deferredPrompt;
+    const installBtn = document.getElementById('installAppBtn');
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (installBtn) installBtn.style.display = 'inline-block';
+    });
+    if (installBtn) {
+      installBtn.addEventListener('click', async function() {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          await deferredPrompt.userChoice;
+          deferredPrompt = null;
+          installBtn.style.display = 'none';
+        }
+      });
+    }
+
+    // 3. Project Photos Array
+    const projectGallery = [
+      { src: "1792820606285%20(2).png", category: "earthing", label: "Copper Chemical Earthing Pit" },
+      { src: "1792820643926%20(1).png", category: "lighting", label: "Aviation Obstruction Beacon" },
+      { src: "1792820625686%20(1).png", category: "wiring", label: "Overhead Industrial Cable Tray" },
+      { src: "1792821005726%20(1).png", category: "lighting", label: "High-Bay Warehouse Lighting" },
+      { src: "1792820985244%20(2).png", category: "panels", label: "Industrial Control Panel & Busbar" },
+      { src: "1792820963840%20(1).png", category: "panels", label: "Switchgear & Breaker Wiring" },
+      { src: "1792820584675%20(1).png", category: "panels", label: "LT/HT Distribution Panel" }
+    ];
+
+    let currentList = projectGallery.slice();
+    let currentIndex = 0;
+
+    function renderGrid(items) {
+      currentList = items;
+      const grid = document.getElementById('galleryGrid');
+      if (!grid) return;
+      grid.innerHTML = items.map(function(item, idx) {
+        return '<div class="gallery-item" onclick="openLightbox(' + idx + ')">' +
+          '<img src="' + item.src + '" alt="' + item.label + '">' +
+          '<div class="gallery-caption">' + item.label + '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    window.openGallery = function(title, category) {
+      category = category || 'all';
+      const modal = document.getElementById('galleryModal');
+      const titleEl = document.getElementById('galleryTitle');
+      if (!modal) return;
+      if (titleEl) titleEl.innerText = title || "Project Gallery";
+
+      const filtered = category === 'all' ? projectGallery : projectGallery.filter(function(p) {
+        return p.category === category;
+      });
+      renderGrid(filtered.length ? filtered : projectGallery);
+
+      modal.style.display = 'flex';
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.filterGallery = function(category, btnEl) {
+      const btns = document.querySelectorAll('.filter-btn');
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      if (btnEl) btnEl.classList.add('active');
+      const filtered = category === 'all' ? projectGallery : projectGallery.filter(function(p) {
+        return p.category === category;
+      });
+      renderGrid(filtered);
+    };
+
+    window.closeGallery = function() {
+      const modal = document.getElementById('galleryModal');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('active');
+      }
+      document.body.style.overflow = 'auto';
+    };
+
+    window.openLightbox = function(index) {
+      currentIndex = index;
+      updateLightbox();
+      const lb = document.getElementById('lightbox');
+      if (lb) {
+        lb.style.display = 'flex';
+        lb.classList.add('active');
+      }
+    };
+
+    function updateLightbox() {
+      const item = currentList[currentIndex];
+      const img = document.getElementById('lightboxImg');
+      const counter = document.getElementById('lbCounter');
+      if (img && item) img.src = item.src;
+      if (counter) counter.innerText = (currentIndex + 1) + ' / ' + currentList.length;
+    }
+
+    window.changeSlide = function(step) {
+      currentIndex = (currentIndex + step + currentList.length) % currentList.length;
+      updateLightbox();
+    };
+
+    window.closeLightbox = function() {
+      const lb = document.getElementById('lightbox');
+      if (lb) {
+        lb.style.display = 'none';
+        lb.classList.remove('active');
+      }
+    };
+
+    // 4. Card Click & Touch Handler
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(function(card) {
+        card.addEventListener('click', function() {
+          const category = card.getAttribute('data-category') || 'all';
+          const title = card.getAttribute('data-title') || 'Project Gallery';
+          window.openGallery(title, category);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
 
